@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المحاضرة الخامسة — مقدمة CSS | Sunshine T Academy</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Fira+Code:wght@400;500&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+        --primary: #667eea;
+        --primary-dark: #4c5fd5;
+        --secondary: #764ba2;
+        --accent: #f39c12;
+        --success: #27ae60;
+        --danger: #e74c3c;
+        --info: #3498db;
+        --dark: #2c3e50;
+        --light: #f8f9fa;
+        --code-bg: #1e1e2e;
+        --code-header: #181825;
+    }
+
+    body {
+        font-family: 'Cairo', sans-serif;
+        line-height: 1.85;
+        color: var(--dark);
+        background: #eef1f7;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 210mm;
+        margin: 0 auto;
+        background: #fff;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
+        border-radius: 12px;
+    }
+
+    /* ═══ Header ═══ */
+    .header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 35px 30px;
+        border-radius: 12px;
+        margin: -40px -40px 35px -40px;
+        text-align: center;
+    }
+    .header h1 { font-size: 2.1em; font-weight: 900; margin-bottom: 8px; }
+    .header .subtitle { font-size: 1.15em; opacity: .95; font-weight: 600; }
+    .lecture-info {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        padding: 14px;
+        background: rgba(255,255,255,.15);
+        border-radius: 10px;
+        font-size: .95em;
+    }
+    .lecture-info div { text-align: center; }
+    .lecture-info strong { display: block; font-size: .85em; opacity: .85; margin-bottom: 3px; }
+
+    /* ═══ New Section Badge ═══ */
+    .new-section {
+        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        border: 3px solid #f59e0b;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+        text-align: center;
+    }
+    .new-section h2 {
+        color: #b45309;
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+    .new-section p {
+        color: #78350f;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+
+    /* ═══ Sections ═══ */
+    .section { margin: 32px 0; page-break-inside: avoid; }
+    .section-title {
+        font-size: 1.55em;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 16px;
+        padding-right: 14px;
+        border-right: 5px solid var(--secondary);
+        display: block;
+    }
+
+    /* ═══ Review Box ═══ */
+    .review-box {
+        background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+        padding: 22px;
+        border-radius: 12px;
+        border-right: 5px solid var(--info);
+        margin: 20px 0;
+    }
+    .review-box h3 { color: #006064; margin-bottom: 14px; font-size: 1.25em; }
+    .review-box ul { list-style: none; }
+    .review-box li {
+        padding: 6px 26px 6px 0;
+        position: relative;
+        font-size: .95em;
+    }
+    .review-box li::before {
+        content: "↻";
+        position: absolute;
+        right: 0;
+        color: var(--info);
+        font-weight: 900;
+        font-size: 1.2em;
+    }
+
+    /* ═══ Objectives ═══ */
+    .objectives {
+        background: linear-gradient(135deg, #fff8e1 0%, #ffeaa7 100%);
+        padding: 22px;
+        border-radius: 12px;
+        border-right: 5px solid var(--accent);
+    }
+    .objectives h3 { color: #d35400; margin-bottom: 14px; font-size: 1.25em; }
+    .objectives ul { list-style: none; }
+    .objectives li { padding: 6px 26px 6px 0; position: relative; }
+    .objectives li::before {
+        content: "✓";
+        position: absolute;
+        right: 0;
+        color: var(--success);
+        font-weight: 900;
+        font-size: 1.1em;
+    }
+
+    /* ═══ Content Box ═══ */
+    .content-box {
+        background: var(--light);
+        padding: 22px;
+        border-radius: 10px;
+        margin: 15px 0;
+        border-right: 4px solid var(--primary);
+    }
+    .content-box h4 { color: var(--primary-dark); margin: 15px 0 10px; }
+    .content-box ul { padding-right: 22px; }
+    .content-box li { padding: 4px 0; }
+
+    /* ═══ Key Term ═══ */
+    .key-term {
+        background: #fff3cd;
+        padding: 2px 9px;
+        border-radius: 5px;
+        font-weight: 700;
+        color: #856404;
+        border: 1px solid #ffeaa7;
+    }
+
+    /* ═══ Notes ═══ */
+    .note {
+        background: #fff5f5;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-right: 5px solid var(--danger);
+        margin: 16px 0;
+    }
+    .note strong { color: #c0392b; }
+
+    .tip {
+        background: #f0fdf4;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-right: 5px solid var(--success);
+        margin: 16px 0;
+    }
+    .tip strong { color: #166534; }
+
+    .warn {
+        background: #fffbeb;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-right: 5px solid var(--accent);
+        margin: 16px 0;
+    }
+    .warn strong { color: #b45309; }
+
+    .info-box {
+        background: #eff6ff;
+        padding: 15px 20px;
+        border-radius: 10px;
+        border-right: 5px solid var(--info);
+        margin: 16px 0;
+    }
+    .info-box strong { color: #1e40af; }
+
+    /* ═══════════════════════════════════════════
+       🎨 CODE EDITOR STYLE
+       ═══════════════════════════════════════════ */
+    .code-editor {
+        background: var(--code-bg);
+        border-radius: 12px;
+        margin: 20px 0;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0,0,0,.18);
+        direction: ltr;
+        text-align: left;
+    }
+
+    .editor-bar {
+        background: var(--code-header);
+        padding: 11px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid #313244;
+    }
+    .editor-dots { display: flex; gap: 7px; }
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+    .dot.red { background: #ff5f57; }
+    .dot.yellow { background: #febc2e; }
+    .dot.green { background: #28c840; }
+    .editor-filename {
+        margin-left: auto;
+        margin-right: auto;
+        color: #a6adc8;
+        font-family: 'Fira Code', monospace;
+        font-size: .85em;
+        font-weight: 500;
+        letter-spacing: .3px;
+    }
+
+    .code-editor pre {
+        margin: 0;
+        padding: 20px 22px;
+        overflow-x: auto;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 14.5px;
+        line-height: 1.75;
+        color: #cdd6f4;
+        white-space: pre;
+        tab-size: 4;
+        direction: ltr;
+        text-align: left;
+        -moz-tab-size: 4;
+    }
+    .code-editor pre::-webkit-scrollbar { height: 8px; }
+    .code-editor pre::-webkit-scrollbar-thumb { background: #45475a; border-radius: 4px; }
+
+    /* ═══ Syntax Highlighting ═══ */
+    .tag       { color: #f38ba8; }
+    .attr      { color: #fab387; }
+    .value     { color: #a6e3a1; }
+    .text      { color: #cdd6f4; }
+    .comment   { color: #6c7086; font-style: italic; }
+    .doctype   { color: #cba6f7; font-weight: 600; }
+    .bracket   { color: #89b4fa; }
+    .equals    { color: #94e2d5; }
+    .selector  { color: #89dceb; }
+    .property  { color: #f9e2af; }
+    .css-value { color: #a6e3a1; }
+
+    /* ═══ Output Preview ═══ */
+    .output {
+        background: #fff;
+        border: 2px dashed var(--primary);
+        border-radius: 10px;
+        padding: 18px;
+        margin: 18px 0;
+    }
+    .output::before {
+        content: "🌐 النتيجة في المتصفح";
+        display: block;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 12px;
+        font-size: .95em;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+    }
+
+    /* ═══ Before/After Comparison ═══ */
+    .comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin: 20px 0;
+    }
+    .comp-item {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid #e5e7eb;
+    }
+    .comp-item h4 {
+        color: var(--primary-dark);
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: .95em;
+        padding: 8px;
+        background: var(--light);
+        border-radius: 6px;
+    }
+    @media (max-width: 700px) {
+        .comparison { grid-template-columns: 1fr; }
+    }
+
+    /* ═══ Example Box ═══ */
+    .example {
+        background: #f0fdf4;
+        padding: 20px;
+        border-radius: 10px;
+        margin: 16px 0;
+        border-right: 5px solid var(--success);
+    }
+    .example h4 { color: var(--success); margin-bottom: 10px; }
+
+    /* ═══ Tables ═══ */
+    table.doc-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 16px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        font-size: .95em;
+    }
+    table.doc-table th {
+        background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        color: white;
+        padding: 12px 14px;
+        text-align: right;
+        font-weight: 700;
+    }
+    table.doc-table td {
+        padding: 11px 14px;
+        border-bottom: 1px solid #e9ecf3;
+    }
+    table.doc-table tr:nth-child(even) { background: #f8f9fb; }
+    table.doc-table tr:last-child td { border-bottom: none; }
+    table.doc-table code {
+        background: #eef1f7;
+        padding: 3px 8px;
+        border-radius: 5px;
+        color: var(--primary-dark);
+        font-family: 'Fira Code', monospace;
+        font-size: .9em;
+        direction: ltr;
+        display: inline-block;
+    }
+
+    /* ═══ Color Demo ═══ */
+    .color-demo {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+        margin: 15px 0;
+    }
+    .color-box {
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 600;
+        font-size: .85em;
+        border: 2px solid #e5e7eb;
+    }
+
+    /* ═══ Quiz ═══ */
+    .quiz {
+        background: linear-gradient(135deg, #f3e7ff 0%, #e0d1f5 100%);
+        padding: 28px 24px;
+        border-radius: 14px;
+        margin: 35px 0;
+        page-break-before: always;
+    }
+    .quiz > h3 {
+        color: #6b21a8;
+        margin-bottom: 22px;
+        font-size: 1.4em;
+        text-align: center;
+        padding-bottom: 12px;
+        border-bottom: 2px dashed #a78bfa;
+    }
+    .question {
+        background: white;
+        padding: 16px 18px;
+        border-radius: 10px;
+        margin: 13px 0;
+        border-right: 4px solid #8b5cf6;
+        box-shadow: 0 2px 10px rgba(139, 92, 246, .08);
+    }
+    .question h4 { color: #6b21a8; margin-bottom: 10px; font-size: 1em; }
+    .options { list-style: none; }
+    .options li {
+        padding: 8px 14px;
+        margin: 5px 0;
+        background: #f8f9fb;
+        border-radius: 7px;
+        font-size: .93em;
+        direction: ltr;
+        text-align: left;
+        font-family: 'Fira Code', monospace;
+        color: #374151;
+    }
+    .options li.ar {
+        direction: rtl;
+        text-align: right;
+        font-family: 'Cairo', sans-serif;
+    }
+
+    /* ═══ Homework ═══ */
+    .homework {
+        background: linear-gradient(135deg, #fff1f0 0%, #ffe0db 100%);
+        padding: 28px 24px;
+        border-radius: 14px;
+        margin: 35px 0;
+        page-break-before: always;
+    }
+    .homework > h3 {
+        color: #b91c1c;
+        margin-bottom: 22px;
+        font-size: 1.4em;
+        text-align: center;
+        padding-bottom: 12px;
+        border-bottom: 2px dashed #f87171;
+    }
+    .task {
+        background: white;
+        padding: 18px;
+        border-radius: 10px;
+        margin: 14px 0;
+        border-right: 4px solid var(--danger);
+        box-shadow: 0 2px 10px rgba(231, 76, 60, .08);
+    }
+    .task h4 {
+        color: #b91c1c;
+        margin-bottom: 10px;
+        font-size: 1.05em;
+    }
+    .task ul { padding-right: 22px; margin-top: 6px; }
+    .task ul li { padding: 3px 0; font-size: .95em; }
+
+    /* ═══ Summary ═══ */
+    .summary {
+        background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+        padding: 22px;
+        border-radius: 12px;
+        border-right: 5px solid var(--success);
+        margin: 20px 0;
+    }
+    .summary h3 { color: var(--success); margin-bottom: 14px; }
+    .summary ul { list-style: none; }
+    .summary li {
+        padding: 6px 26px 6px 0;
+        position: relative;
+        font-weight: 500;
+    }
+    .summary li::before {
+        content: "✓";
+        position: absolute;
+        right: 0;
+        color: var(--success);
+        font-weight: 900;
+    }
+
+    /* ═══ Footer ═══ */
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 22px;
+        border-top: 2px solid var(--primary);
+        color: #7f8c8d;
+        font-size: .95em;
+    }
+    .footer strong { color: var(--primary-dark); font-size: 1.05em; }
+    .next-lecture {
+        margin-top: 14px;
+        padding: 12px;
+        background: linear-gradient(135deg, #eef1f7 0%, #e0e7ff 100%);
+        border-radius: 8px;
+        color: var(--primary-dark);
+        font-weight: 600;
+    }
+
+    /* ═══ Print ═══ */
+    @media print {
+        body { background: white; padding: 0; }
+        .container { box-shadow: none; padding: 20px; }
+        .section { page-break-inside: avoid; }
+        .quiz, .homework { page-break-before: always; }
+        .code-editor { box-shadow: none; }
+        .header { margin: -20px -20px 25px -20px; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header class="header">
+        <h1>🌟 Sunshine T Academy</h1>
+        <div class="subtitle">Frontend Development Course</div>
+        <div class="lecture-info">
+            <div><strong>المحاضرة</strong><span>الخامسة</span></div>
+            <div><strong>الموضوع</strong><span>مقدمة CSS</span></div>
+            <div><strong>المستوى</strong><span>مبتدئ</span></div>
+        </div>
+    </header>
+
+    <!-- ═══════ NEW SECTION ═══════ -->
+    <div class="new-section">
+        <h2>🎨 مرحباً بك في عالم CSS!</h2>
+        <p>القسم الثاني من الكورس — حيث تتحول صفحاتك من نصوص عادية إلى تحف فنية! ✨</p>
+    </div>
+
+    <!-- ═══════ REVIEW ═══════ -->
+    <section class="section">
+        <div class="review-box">
+            <h3>↻ مراجعة سريعة — ماذا تعلمنا في HTML؟</h3>
+            <ul>
+                <li>بنينا هيكل الصفحة بـ HTML (المحتوى)</li>
+                <li>تعلمنا العناوين، الفقرات، القوائم، الروابط</li>
+                <li>أضفنا الصور والوسائط</li>
+                <li>أنشأنا جداول ونماذج تفاعلية</li>
+                <li>✅ HTML = المحتوى (Content)</li>
+                <li>❓ لكن... كل شيء كان أبيض وأسود ومُمِل!</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ═══════ OBJECTIVES ═══════ -->
+    <section class="section">
+        <div class="objectives">
+            <h3>🎯 أهداف المحاضرة</h3>
+            <ul>
+                <li>فهم ما هو CSS ولماذا نحتاجه</li>
+                <li>الفرق الواضح بين HTML و CSS</li>
+                <li>تعلم 3 طرق لكتابة CSS</li>
+                <li>فهم Selectors الأساسية (Element, Class, ID)</li>
+                <li>تغيير الألوان (Colors) بطرق مختلفة</li>
+                <li>تنسيق النصوص (Fonts & Text)</li>
+                <li>بناء مشروع: بطاقة تعريف ملونة!</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ═══════ WHAT IS CSS ═══════ -->
+    <section class="section">
+        <h2 class="section-title">ما هو CSS؟</h2>
+
+        <div class="content-box">
+            <p><strong>CSS</strong> هو اختصار لـ <span class="key-term">Cascading Style Sheets</span></p>
+            <p>يعني: <strong>أوراق الأنماط المتعاقبة</strong></p>
+
+            <h4>🤔 ما وظيفة CSS؟</h4>
+            <p>CSS هي اللغة المسؤولة عن <strong>شكل ومظهر</strong> صفحات الويب:</p>
+            <ul>
+                <li>🎨 الألوان (Colors)</li>
+                <li>📏 الأحجام والمسافات (Sizes & Spacing)</li>
+                <li>🔤 الخطوط والنصوص (Fonts & Text)</li>
+                <li>📐 التخطيط والتنظيم (Layout)</li>
+                <li>✨ التأثيرات والحركة (Effects & Animation)</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 القاعدة الذهبية:</strong><br>
+            <strong>HTML</strong> = المحتوى (ماذا نعرض؟)<br>
+            <strong>CSS</strong> = التصميم (كيف نعرضه؟)
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">🎭 مثال توضيحي: قبل وبعد CSS</h3>
+
+        <div class="comparison">
+            <div class="comp-item">
+                <h4>❌ بدون CSS (HTML فقط)</h4>
+                <div style="font-family: 'Times New Roman'; font-size: 16px; color: black; background: white; padding: 10px;">
+                    <h1 style="font-size: 2em; font-weight: bold;">مرحباً بك</h1>
+                    <p>هذا نص عادي بدون تنسيق</p>
+                    <a href="#" style="color: blue; text-decoration: underline;">رابط عادي</a>
+                </div>
+            </div>
+
+            <div class="comp-item">
+                <h4>✅ مع CSS</h4>
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; text-align: center;">
+                    <h1 style="font-size: 1.8em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">مرحباً بك</h1>
+                    <p style="font-size: 1em; margin-bottom: 10px;">نص منسق وجميل!</p>
+                    <a href="#" style="color: #fde68a; text-decoration: none; font-weight: bold; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; display: inline-block;">رابط أنيق</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip">
+            <strong>✨ لاحظ الفرق؟</strong> نفس المحتوى، لكن CSS حولته من ممل إلى جذاب!
+        </div>
+    </section>
+
+    <!-- ═══════ CSS METHODS ═══════ -->
+    <section class="section">
+        <h2 class="section-title">طرق كتابة CSS — 3 طرق أساسية</h2>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">1️⃣ Inline CSS — داخل الوسم مباشرة</h3>
+
+        <div class="content-box">
+            <p>نكتب CSS داخل attribute اسمه <code>style</code> في نفس الوسم.</p>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">inline-css.html</div>
+            </div>
+<pre><span class="tag">&lt;h1</span> <span class="attr">style</span><span class="equals">=</span><span class="value">"color: blue; font-size: 30px;"</span><span class="tag">&gt;</span>
+    <span class="text">مرحباً بالعالم</span>
+<span class="tag">&lt;/h1&gt;</span>
+
+<span class="tag">&lt;p</span> <span class="attr">style</span><span class="equals">=</span><span class="value">"color: green;"</span><span class="tag">&gt;</span>
+    <span class="text">هذه فقرة خضراء</span>
+<span class="tag">&lt;/p&gt;</span></pre>
+        </div>
+
+        <div class="output">
+            <h1 style="color: blue; font-size: 30px;">مرحباً بالعالم</h1>
+            <p style="color: green;">هذه فقرة خضراء</p>
+        </div>
+
+        <div class="warn">
+            <strong>⚠️ متى نستخدمها؟</strong> نادراً! فقط للاختبار السريع.<br>
+            <strong>السبب:</strong> صعبة التعديل — تخيل 100 عنصر تريد تغيير لونهم!
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 30px 0 15px;">2️⃣ Internal CSS — داخل &lt;style&gt; في الـ head</h3>
+
+        <div class="content-box">
+            <p>نكتب كل CSS داخل وسم <code>&lt;style&gt;</code> في الـ <code>&lt;head&gt;</code></p>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">internal-css.html</div>
+            </div>
+<pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span><span class="equals">=</span><span class="value">"ar"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span><span class="equals">=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">صفحتي</span><span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;style&gt;</span>
+        <span class="selector">h1</span> {
+            <span class="property">color</span>: <span class="css-value">red</span>;
+            <span class="property">font-size</span>: <span class="css-value">40px</span>;
+        }
+        <span class="selector">p</span> {
+            <span class="property">color</span>: <span class="css-value">gray</span>;
+        }
+    <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="text">عنوان أحمر</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">فقرة رمادية</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+        </div>
+
+        <div class="output">
+            <h1 style="color: red; font-size: 40px;">عنوان أحمر</h1>
+            <p style="color: gray;">فقرة رمادية</p>
+        </div>
+
+        <div class="tip">
+            <strong>✅ ميزة:</strong> كل التنسيقات في مكان واحد — سهل التعديل!<br>
+            <strong>متى نستخدمها؟</strong> صفحة واحدة صغيرة.
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 30px 0 15px;">3️⃣ External CSS — ملف منفصل (الطريقة المحترفة! ⭐)</h3>
+
+        <div class="content-box">
+            <p>نكتب CSS في ملف منفصل بامتداد <code>.css</code> ونربطه بالصفحة.</p>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">index.html</div>
+            </div>
+<pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span><span class="equals">=</span><span class="value">"ar"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span><span class="equals">=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">صفحتي</span><span class="tag">&lt;/title&gt;</span>
+    <span class="comment">&lt;!-- ربط ملف CSS الخارجي --&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span><span class="equals">=</span><span class="value">"stylesheet"</span> <span class="attr">href</span><span class="equals">=</span><span class="value">"style.css"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;h1&gt;</span><span class="text">عنوان منسق</span><span class="tag">&lt;/h1&gt;</span>
+    <span class="tag">&lt;p&gt;</span><span class="text">فقرة منسقة</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">style.css</div>
+            </div>
+<pre><span class="comment">/* ملف CSS منفصل */</span>
+<span class="selector">h1</span> {
+    <span class="property">color</span>: <span class="css-value">purple</span>;
+    <span class="property">font-size</span>: <span class="css-value">35px</span>;
+}
+
+<span class="selector">p</span> {
+    <span class="property">color</span>: <span class="css-value">navy</span>;
+    <span class="property">font-size</span>: <span class="css-value">18px</span>;
+}</pre>
+        </div>
+
+        <div class="output">
+            <h1 style="color: purple; font-size: 35px;">عنوان منسق</h1>
+            <p style="color: navy; font-size: 18px;">فقرة منسقة</p>
+        </div>
+
+        <div class="tip">
+            <strong>🏆 هذه هي الطريقة المحترفة!</strong><br>
+            <strong>الميزة:</strong> ملف CSS واحد لكل صفحات الموقع — عدّل مرة واحدة ويتغير كل الموقع!
+        </div>
+
+        <div class="info-box">
+            <strong>📂 تنظيم المشروع:</strong>
+            <pre style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 8px; font-family: 'Fira Code', monospace; font-size: .85em;">my-website/
+├── index.html
+├── about.html
+├── css/
+│   └── style.css
+└── images/
+    └── logo.png</pre>
+        </div>
+    </section>
+
+    <!-- ═══════ SELECTORS ═══════ -->
+    <section class="section">
+        <h2 class="section-title">Selectors — كيف نختار العنصر الذي نريد تنسيقه؟</h2>
+
+        <div class="content-box">
+            <p><span class="key-term">Selector</span> = المحدد الذي يخبر CSS أي عنصر نريد تنسيقه.</p>
+            <p>لدينا 3 أنواع أساسية:</p>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">1️⃣ Element Selector — بالاسم مباشرة</h3>
+
+        <div class="content-box">
+            <p>نختار <strong>كل عناصر</strong> من نفس النوع.</p>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">element-selector.css</div>
+            </div>
+<pre><span class="comment">/* كل عناصر h1 في الصفحة */</span>
+<span class="selector">h1</span> {
+    <span class="property">color</span>: <span class="css-value">blue</span>;
+}
+
+<span class="comment">/* كل عناصر p في الصفحة */</span>
+<span class="selector">p</span> {
+    <span class="property">color</span>: <span class="css-value">green</span>;
+}</pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 30px 0 15px;">2️⃣ Class Selector — بالـ class (الأكثر استخداماً! ⭐)</h3>
+
+        <div class="content-box">
+            <p>نختار عناصر محددة بنفس الـ <code>class</code>.</p>
+            <p><strong>كيف نستخدمها؟</strong></p>
+            <ul>
+                <li>في HTML: نضيف <code>class="..."</code></li>
+                <li>في CSS: نكتب <code>.اسم-الكلاس</code> (بنقطة قبلها)</li>
+            </ul>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">class-example.html</div>
+            </div>
+<pre><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">class</span><span class="equals">=</span><span class="value">"special"</span><span class="tag">&gt;</span><span class="text">فقرة مميزة</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p&gt;</span><span class="text">فقرة عادية</span><span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;p</span> <span class="attr">class</span><span class="equals">=</span><span class="value">"special"</span><span class="tag">&gt;</span><span class="text">فقرة مميزة أخرى</span><span class="tag">&lt;/p&gt;</span></pre>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">style.css</div>
+            </div>
+<pre><span class="comment">/* فقط العناصر التي لها class="special" */</span>
+<span class="selector">.special</span> {
+    <span class="property">color</span>: <span class="css-value">red</span>;
+    <span class="property">font-weight</span>: <span class="css-value">bold</span>;
+}</pre>
+        </div>
+
+        <div class="output">
+            <p style="color: red; font-weight: bold;">فقرة مميزة</p>
+            <p>فقرة عادية</p>
+            <p style="color: red; font-weight: bold;">فقرة مميزة أخرى</p>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 30px 0 15px;">3️⃣ ID Selector — بالـ id (للعناصر الفريدة)</h3>
+
+        <div class="content-box">
+            <p>نختار عنصر <strong>واحد فقط</strong> بـ <code>id</code> فريد.</p>
+            <p><strong>كيف نستخدمها؟</strong></p>
+            <ul>
+                <li>في HTML: نضيف <code>id="..."</code></li>
+                <li>في CSS: نكتب <code>#اسم-الـid</code> (بـ # قبلها)</li>
+            </ul>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">id-example.html</div>
+            </div>
+<pre><span class="comment">&lt;!-- HTML --&gt;</span>
+<span class="tag">&lt;h1</span> <span class="attr">id</span><span class="equals">=</span><span class="value">"main-title"</span><span class="tag">&gt;</span><span class="text">العنوان الرئيسي</span><span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h1&gt;</span><span class="text">عنوان عادي</span><span class="tag">&lt;/h1&gt;</span></pre>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">style.css</div>
+            </div>
+<pre><span class="comment">/* فقط العنصر الذي له id="main-title" */</span>
+<span class="selector">#main-title</span> {
+    <span class="property">color</span>: <span class="css-value">orange</span>;
+    <span class="property">font-size</span>: <span class="css-value">50px</span>;
+}</pre>
+        </div>
+
+        <div class="output">
+            <h1 style="color: orange; font-size: 50px; margin: 10px 0;">العنوان الرئيسي</h1>
+            <h1 style="margin: 10px 0;">عنوان عادي</h1>
+        </div>
+
+        <div class="warn">
+            <strong>⚠️ قاعدة مهمة:</strong> الـ <code>id</code> يجب أن يكون <strong>فريداً</strong> في الصفحة — لا تكرره!<br>
+            لكن الـ <code>class</code> يمكن استخدامه لعدة عناصر.
+        </div>
+
+        <table class="doc-table" style="margin-top: 20px;">
+            <thead>
+                <tr><th>Selector</th><th>الرمز</th><th>الاستخدام</th><th>مثال</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Element</td>
+                    <td>بدون رمز</td>
+                    <td>كل العناصر من نوع معين</td>
+                    <td><code>h1 { }</code></td>
+                </tr>
+                <tr>
+                    <td>Class</td>
+                    <td><code>.</code> (نقطة)</td>
+                    <td>عناصر متعددة</td>
+                    <td><code>.box { }</code></td>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td><code>#</code> (شباك)</td>
+                    <td>عنصر واحد فريد</td>
+                    <td><code>#header { }</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ═══════ COLORS ═══════ -->
+    <section class="section">
+        <h2 class="section-title">الألوان (Colors) — أهم جزء اليوم! 🎨</h2>
+
+        <div class="content-box">
+            <p>في CSS، يمكن كتابة الألوان بـ <strong>4 طرق</strong>:</p>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">1️⃣ Color Names — بالاسم</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">color-names.css</div>
+            </div>
+<pre><span class="selector">h1</span> {
+    <span class="property">color</span>: <span class="css-value">red</span>;
+}
+
+<span class="selector">p</span> {
+    <span class="property">color</span>: <span class="css-value">blue</span>;
+}
+
+<span class="selector">.box</span> {
+    <span class="property">background-color</span>: <span class="css-value">yellow</span>;
+}</pre>
+        </div>
+
+        <div class="color-demo">
+            <div class="color-box" style="background: red; color: white;">red</div>
+            <div class="color-box" style="background: blue; color: white;">blue</div>
+            <div class="color-box" style="background: green; color: white;">green</div>
+            <div class="color-box" style="background: yellow; color: black;">yellow</div>
+            <div class="color-box" style="background: orange; color: white;">orange</div>
+            <div class="color-box" style="background: purple; color: white;">purple</div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 متى نستخدمها؟</strong> للاختبار السريع. يوجد 140 لون بأسماء إنجليزية.
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 30px 0 15px;">2️⃣ Hexadecimal — الطريقة الأشهر! #</h3>
+
+        <div class="content-box">
+            <p>نكتب اللون بـ <strong>6 أرقام/حروف</strong> بعد <code>#</code></p>
+            <p>الصيغة: <code>#RRGGBB</code> (Red, Green, Blue)</p>
+        </div>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">hex-colors.css</div>
+            </div>
+<pre><span class="selector">h1</span> {
+    <span class="property">color</span>: <span class="css-value">#ff0000</span>; <span class="comment">/* أحمر */</span>
+}
+
+<span class="selector">p</span> {
+    <span class="property">color</span>: <span class="css-value">#0000ff</span>; <span class="comment">/* أزرق */</span>
+}
+
+<span class="selector">.special</span> {
+    <span class="property">color</span>: <span class="css-value">#9b59b6</span>; <span class="comment">/* بنفسجي */</span>
+}</pre>
+        </div>
+
+        <div class="color-demo">
+            <div class="color-box" style="background: #ff0000; color: white;">#ff0000</div>
+            <div class="color-box" style="background: #00ff00; color: black;">#00ff00</div>
+            <div class="color-box" style="background: #0000ff; color: white;">#0000ff</div>
+            <div class="color-box" style="background: #9b59b6; color: white;">#9b59b6</div>
+            <div class="color-box" style="background: #e74c3c; color: white;">#e74c3c</div>
+            <div class="color-box" style="background: #3498db; color: white;">#3498db</div>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 30px 0 15px;">3️⃣ RGB — Red Green Blue</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">rgb-colors.css</div>
+            </div>
+<pre><span class="selector">h1</span> {
+    <span class="property">color</span>: <span class="css-value">rgb(255, 0, 0)</span>; <span class="comment">/* أحمر */</span>
+}
+
+<span class="selector">p</span> {
+    <span class="property">color</span>: <span class="css-value">rgb(0, 128, 255)</span>; <span class="comment">/* أزرق سماوي */</span>
+}</pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 30px 0 15px;">4️⃣ RGBA — مع الشفافية (Transparency)</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">rgba-colors.css</div>
+            </div>
+<pre><span class="selector">.box</span> {
+    <span class="property">background-color</span>: <span class="css-value">rgba(255, 0, 0, 0.5)</span>; <span class="comment">/* أحمر شفاف 50% */</span>
+}</pre>
+        </div>
+
+        <div class="tip">
+            <strong>💡 نصيحة:</strong> استخدم مواقع مثل <strong>coolors.co</strong> أو <strong>color.adobe.com</strong> لاختيار ألوان متناسقة!
+        </div>
+    </section>
+
+    <!-- ═══════ TEXT & FONTS ═══════ -->
+    <section class="section">
+        <h2 class="section-title">تنسيق النصوص والخطوط</h2>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">📏 حجم الخط (Font Size)</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">font-size.css</div>
+            </div>
+<pre><span class="selector">h1</span> {
+    <span class="property">font-size</span>: <span class="css-value">40px</span>;
+}
+
+<span class="selector">p</span> {
+    <span class="property">font-size</span>: <span class="css-value">18px</span>;
+}</pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">💪 سُمك الخط (Font Weight)</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">font-weight.css</div>
+            </div>
+<pre><span class="selector">.bold</span> {
+    <span class="property">font-weight</span>: <span class="css-value">bold</span>; <span class="comment">/* أو 700 */</span>
+}
+
+<span class="selector">.normal</span> {
+    <span class="property">font-weight</span>: <span class="css-value">normal</span>; <span class="comment">/* أو 400 */</span>
+}</pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">↔️ محاذاة النص (Text Align)</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">text-align.css</div>
+            </div>
+<pre><span class="selector">.center</span> {
+    <span class="property">text-align</span>: <span class="css-value">center</span>;
+}
+
+<span class="selector">.right</span> {
+    <span class="property">text-align</span>: <span class="css-value">right</span>;
+}
+
+<span class="selector">.left</span> {
+    <span class="property">text-align</span>: <span class="css-value">left</span>;
+}</pre>
+        </div>
+
+        <h3 style="color: var(--primary-dark); margin: 25px 0 15px;">🔤 نوع الخط (Font Family)</h3>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">font-family.css</div>
+            </div>
+<pre><span class="selector">body</span> {
+    <span class="property">font-family</span>: <span class="css-value">Arial, sans-serif</span>;
+}
+
+<span class="selector">h1</span> {
+    <span class="property">font-family</span>: <span class="css-value">'Cairo', sans-serif</span>;
+}</pre>
+        </div>
+
+        <table class="doc-table" style="margin-top: 20px;">
+            <thead>
+                <tr><th>الخاصية</th><th>القيم الشائعة</th><th>مثال</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>font-size</code></td>
+                    <td>px, em, rem, %</td>
+                    <td><code>20px</code></td>
+                </tr>
+                <tr>
+                    <td><code>font-weight</code></td>
+                    <td>normal, bold, 100-900</td>
+                    <td><code>bold</code></td>
+                </tr>
+                <tr>
+                    <td><code>text-align</code></td>
+                    <td>right, center, left</td>
+                    <td><code>center</code></td>
+                </tr>
+                <tr>
+                    <td><code>color</code></td>
+                    <td>أي لون</td>
+                    <td><code>#333</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ═══════ PROJECT ═══════ -->
+    <section class="section">
+        <h2 class="section-title">المشروع العملي: بطاقة تعريف ملونة 🎨</h2>
+
+        <p>الآن سنجمع كل ما تعلمناه في مشروع واحد جميل! 🎉</p>
+
+        <div class="code-editor">
+            <div class="editor-bar">
+                <div class="editor-dots">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                </div>
+                <div class="editor-filename">profile-card.html</div>
+            </div>
+<pre><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span><span class="equals">=</span><span class="value">"ar"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span><span class="equals">=</span><span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">بطاقتي الشخصية</span><span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;style&gt;</span>
+        <span class="selector">body</span> {
+            <span class="property">background-color</span>: <span class="css-value">#f0f0f0</span>;
+            <span class="property">font-family</span>: <span class="css-value">Arial, sans-serif</span>;
+        }
+
+        <span class="selector">.card</span> {
+            <span class="property">background-color</span>: <span class="css-value">#ffffff</span>;
+            <span class="property">width</span>: <span class="css-value">400px</span>;
+            <span class="property">padding</span>: <span class="css-value">30px</span>;
+            <span class="property">text-align</span>: <span class="css-value">center</span>;
+        }
+
+        <span class="selector">.card-header</span> {
+            <span class="property">background-color</span>: <span class="css-value">#667eea</span>;
+            <span class="property">color</span>: <span class="css-value">white</span>;
+            <span class="property">padding</span>: <span class="css-value">20px</span>;
+        }
+
+        <span class="selector">.name</span> {
+            <span class="property">font-size</span>: <span class="css-value">32px</span>;
+            <span class="property">font-weight</span>: <span class="css-value">bold</span>;
+            <span class="property">color</span>: <span class="css-value">#2c3e50</span>;
+        }
+
+        <span class="selector">.title</span> {
+            <span class="property">font-size</span>: <span class="css-value">18px</span>;
+            <span class="property">color</span>: <span class="css-value">#7f8c8d</span>;
+        }
+
+        <span class="selector">.bio</span> {
+            <span class="property">color</span>: <span class="css-value">#34495e</span>;
+            <span class="property">font-size</span>: <span class="css-value">16px</span>;
+        }
+    <span class="tag">&lt;/style&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+    <span class="tag">&lt;div</span> <span class="attr">class</span><span class="equals">=</span><span class="value">"card"</span><span class="tag">&gt;</span>
+        <span class="tag">&lt;div</span> <span class="attr">class</span><span class="equals">=</span><span class="value">"card-header"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;h1&gt;</span><span class="text">بطاقة التعريف</span><span class="tag">&lt;/h1&gt;</span>
+        <span class="tag">&lt;/div&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class</span><span class="equals">=</span><span class="value">"name"</span><span class="tag">&gt;</span><span class="text">أحمد محمد</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class</span><span class="equals">=</span><span class="value">"title"</span><span class="tag">&gt;</span><span class="text">طالب في Sunshine T Academy</span><span class="tag">&lt;/p&gt;</span>
+        <span class="tag">&lt;p</span> <span class="attr">class</span><span class="equals">=</span><span class="value">"bio"</span><span class="tag">&gt;</span><span class="text">أحب البرمجة وأتعلم تطوير الويب!</span><span class="tag">&lt;/p&gt;</span>
+    <span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></pre>
+        </div>
+
+        <div class="output">
+            <div style="background: #f0f0f0; padding: 20px; display: flex; justify-content: center;">
+                <div style="background: white; width: 350px; text-align: center; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div style="background: #667eea; color: white; padding: 20px;">
+                        <h1 style="margin: 0; font-size: 1.3em;">بطاقة التعريف</h1>
+                    </div>
+                    <div style="padding: 25px;">
+                        <p style="font-size: 28px; font-weight: bold; color: #2c3e50; margin: 10px 0;">أحمد محمد</p>
+                        <p style="font-size: 16px; color: #7f8c8d; margin: 8px 0;">طالب في Sunshine T Academy</p>
+                        <p style="color: #34495e; font-size: 14px; margin: 15px 0;">أحب البرمجة وأتعلم تطوير الويب!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tip">
+            <strong>🎉 تهانينا!</strong> بنيت أول مشروع CSS حقيقي!<br>
+            <strong>تحدي:</strong> عدّل الألوان واجعل البطاقة بأسلوبك الخاص!
+        </div>
+    </section>
+
+    <!-- ═══════ SUMMARY ═══════ -->
+    <section class="section">
+        <h2 class="section-title">ملخص المحاضرة</h2>
+        <div class="summary">
+            <h3>✅ ما تعلمناه اليوم</h3>
+            <ul>
+                <li>CSS = التصميم والمظهر، HTML = المحتوى</li>
+                <li>3 طرق لكتابة CSS: Inline, Internal, External (الأفضل!)</li>
+                <li>Selectors: Element, Class (.), ID (#)</li>
+                <li>الألوان: بالاسم، Hex (#), RGB, RGBA</li>
+                <li>تنسيق النصوص: font-size, font-weight, color, text-align</li>
+                <li>بنينا بطاقة تعريف ملونة كاملة! 🎨</li>
+            </ul>
+        </div>
+
+        <div class="new-section" style="margin-top: 30px;">
+            <h2>🚀 رحلة CSS بدأت!</h2>
+            <p>المحاضرات القادمة: Box Model, Flexbox, وأشياء أروع!</p>
+        </div>
+    </section>
+
+    <!-- ═══════ QUIZ ═══════ -->
+    <div class="quiz">
+        <h3>🧠 اختبر نفسك — 10 أسئلة</h3>
+
+        <div class="question">
+            <h4>السؤال 1: ما معنى CSS؟</h4>
+            <ul class="options">
+                <li>A) Computer Style Sheets</li>
+                <li>B) Cascading Style Sheets</li>
+                <li>C) Creative Style System</li>
+                <li>D) Colorful Style Sheets</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 2: ما هي الطريقة المحترفة لكتابة CSS؟</h4>
+            <ul class="options ar">
+                <li>A) Inline CSS</li>
+                <li>B) Internal CSS</li>
+                <li>C) External CSS (ملف منفصل)</li>
+                <li>D) كلهم نفس الشيء</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 3: كيف نربط ملف CSS خارجي بصفحة HTML؟</h4>
+            <ul class="options">
+                <li>A) &lt;css href="style.css"&gt;</li>
+                <li>B) &lt;link rel="stylesheet" href="style.css"&gt;</li>
+                <li>C) &lt;style src="style.css"&gt;</li>
+                <li>D) &lt;include css="style.css"&gt;</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 4: ما الرمز المستخدم للـ Class في CSS؟</h4>
+            <ul class="options">
+                <li>A) #</li>
+                <li>B) .</li>
+                <li>C) @</li>
+                <li>D) *</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 5: ما الرمز المستخدم للـ ID في CSS؟</h4>
+            <ul class="options">
+                <li>A) .</li>
+                <li>B) #</li>
+                <li>C) @</li>
+                <li>D) &</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 6: أي لون يعبر عنه #ff0000؟</h4>
+            <ul class="options ar">
+                <li>A) أزرق</li>
+                <li>B) أخضر</li>
+                <li>C) أحمر</li>
+                <li>D) أصفر</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 7: ما الخاصية المستخدمة لتغيير لون النص؟</h4>
+            <ul class="options">
+                <li>A) background-color</li>
+                <li>B) text-color</li>
+                <li>C) color</li>
+                <li>D) font-color</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 8: ما الخاصية لتوسيط النص؟</h4>
+            <ul class="options">
+                <li>A) align: center</li>
+                <li>B) text-align: center</li>
+                <li>C) center: text</li>
+                <li>D) position: center</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 9: ما الفرق بين class و id؟</h4>
+            <ul class="options ar">
+                <li>A) لا يوجد فرق</li>
+                <li>B) class لعدة عناصر، id لعنصر واحد فريد</li>
+                <li>C) id لعدة عناصر، class لعنصر واحد</li>
+                <li>D) class للألوان فقط</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <h4>السؤال 10: ما الخاصية لجعل النص عريضاً؟</h4>
+            <ul class="options">
+                <li>A) font-style: bold</li>
+                <li>B) text-bold: true</li>
+                <li>C) font-weight: bold</li>
+                <li>D) bold: yes</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ═══════ HOMEWORK ═══════ -->
+    <div class="homework">
+        <h3>📝 الواجب — 5 مسائل CSS</h3>
+
+        <div class="task">
+            <h4>المسألة 1: بطاقة تعريف بأسلوبك</h4>
+            <p><strong>المطلوب:</strong> أنشئ بطاقة تعريف شخصية بمعلوماتك:</p>
+            <ul>
+                <li>استخدم External CSS (ملف منفصل)</li>
+                <li>اختر ألواناً مختلفة عن المشروع</li>
+                <li>اجعل الاسم بحجم 36px وعريض</li>
+                <li>اجعل الوصف بلون مختلف</li>
+            </ul>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 2: تنسيق قائمة</h4>
+            <p><strong>المطلوب:</strong> أنشئ قائمة بهواياتك ونسقها:</p>
+            <ul>
+                <li>عنوان بلون #3498db</li>
+                <li>كل عنصر في القائمة بلون مختلف</li>
+                <li>استخدم class للعناصر المهمة</li>
+                <li>اجعل النص محاذى للوسط</li>
+            </ul>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 3: صفحة ملونة</h4>
+            <p><strong>المطلوب:</strong> أنشئ صفحة "ألواني المفضلة":</p>
+            <ul>
+                <li>5 فقرات، كل واحدة بلون مختلف</li>
+                <li>استخدم Hex colors (#)</li>
+                <li>اجعل كل فقرة تشرح اللون بنفس اللون</li>
+            </ul>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 4: تنسيق صفحة HTML سابقة</h4>
+            <p><strong>المطلوب:</strong> خذ أي صفحة HTML عملتها سابقاً ونسقها بـ CSS:</p>
+            <ul>
+                <li>أضف ألوان</li>
+                <li>غيّر أحجام الخطوط</li>
+                <li>استخدم classes و ids</li>
+                <li>اجعلها جميلة!</li>
+            </ul>
+        </div>
+
+        <div class="task">
+            <h4>المسألة 5: 🏆 مشروع كامل — موقع شخصي ملون</h4>
+            <p><strong>المطلوب:</strong> حوّل موقعك الشخصي من المحاضرة 4 إلى موقع ملون:</p>
+            <ul>
+                <li>أنشئ ملف <code>style.css</code> منفصل</li>
+                <li>اربطه بكل صفحات الموقع</li>
+                <li>اختر 3 ألوان رئيسية متناسقة</li>
+                <li>نسّق كل العناوين بنفس الأسلوب</li>
+                <li>اجعل الروابط بلون مميز</li>
+                <li>استخدم classes للعناصر المتكررة</li>
+                <li>اجعل كل صفحة لها header ملون</li>
+            </ul>
+        </div>
+
+        <div class="tip" style="margin-top: 20px;">
+            <strong>💡 نصيحة ذهبية:</strong> جرّب ألوان مختلفة! استخدم <strong>coolors.co</strong> لاختيار ألوان متناسقة.
+        </div>
+    </div>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="footer">
+        <p><strong>Sunshine T Academy</strong></p>
+        <p>"بنحوّل الحلم لكود"</p>
+        <p>Frontend Development Course — المحاضرة الخامسة</p>
+        <div class="next-lecture">
+            🎨 المحاضرة القادمة: <strong>Box Model & Spacing — المسافات والحواف</strong><br>
+            <small>سنتعلم كيف نتحكم في المسافات والحواف والهوامش!</small>
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>
