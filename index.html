@@ -1,0 +1,2442 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحاضرة الخامسة | HTML Media & Page Setup | Sunshine T Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4A7C59;
+            --primary-dark: #2D5F3F;
+            --primary-light: #7BA889;
+            --primary-soft: #D4E5D8;
+
+            --secondary: #D4A574;
+            --secondary-dark: #B8895A;
+            --secondary-light: #E8C9A0;
+
+            --bg-main: #FAF7F2;
+            --bg-cream: #F5EFE6;
+            --bg-card: #FFFFFF;
+            --bg-soft: #EDE5D8;
+            --bg-code: #F9F6F0;
+
+            --text-dark: #2C1810;
+            --text-body: #4A3728;
+            --text-muted: #6B5744;
+            --text-light: #8B7356;
+
+            --border: #E5DCC8;
+            --border-soft: #EDE5D8;
+
+            --success: #5B8C5A;
+            --success-bg: #E3EDDF;
+            --info: #5B8BA0;
+            --info-bg: #DEE8EC;
+            --warning: #C89B6C;
+            --warning-bg: #F0E4D4;
+            --danger: #B85C5C;
+            --danger-bg: #F0DCDC;
+            --purple: #8B7BA8;
+            --purple-bg: #E5DFED;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-main);
+            color: var(--text-body);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== Header ========== */
+        header {
+            background: linear-gradient(135deg, #FAF7F2 0%, #EDE5D8 100%);
+            border-bottom: 3px solid var(--primary);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(74, 124, 89, 0.08);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.25);
+        }
+
+        .lecture-badge {
+            background: var(--bg-card);
+            border: 2px solid var(--primary);
+            color: var(--primary-dark);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* ========== Hero ========== */
+        .hero {
+            padding: 70px 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #D4E5D8 0%, #E8C9A0 50%, #F5EFE6 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 24px;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(74, 124, 89, 0.12);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: var(--primary-dark);
+            color: var(--secondary-light);
+            padding: 8px 22px;
+            border-radius: 20px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 18px;
+            color: var(--text-dark);
+            line-height: 1.3;
+            position: relative;
+        }
+
+        .hero h1 span {
+            color: var(--primary-dark);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* ========== Sections ========== */
+        section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--border);
+        }
+
+        .section-title .title-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            color: white;
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.2);
+        }
+
+        /* ========== Cards ========== */
+        .card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.04);
+        }
+
+        .card:hover {
+            border-color: var(--primary-light);
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: var(--text-body);
+            margin-bottom: 12px;
+        }
+
+        .card strong {
+            color: var(--text-dark);
+        }
+
+        /* ========== Objectives ========== */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .objective-item {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-right: 5px solid var(--primary);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .objective-item:hover {
+            border-color: var(--primary-light);
+            border-right-color: var(--secondary);
+            background: var(--bg-cream);
+        }
+
+        .objective-number {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            flex-shrink: 0;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px rgba(74, 124, 89, 0.25);
+        }
+
+        .objective-item h4 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .objective-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ========== Review Box ========== */
+        .review-box {
+            background: linear-gradient(135deg, var(--purple-bg) 0%, #F5F3FF 100%);
+            border: 2px solid var(--purple);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .review-box h3 {
+            color: var(--purple);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .review-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .review-list li {
+            background: var(--bg-card);
+            border: 1px solid #D4C9E8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            padding-right: 40px;
+            position: relative;
+            color: var(--text-body);
+        }
+
+        .review-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--purple);
+            font-weight: 900;
+            font-size: 1.1rem;
+        }
+
+        /* ========== Analogy Box ========== */
+        .analogy-box {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .analogy-box h3 {
+            color: var(--secondary-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .analogy-list {
+            list-style: none;
+        }
+
+        .analogy-list li {
+            padding: 12px 0;
+            padding-right: 40px;
+            position: relative;
+            color: var(--text-body);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .analogy-list li:last-child {
+            border-bottom: none;
+        }
+
+        .analogy-list li::before {
+            content: '💡';
+            position: absolute;
+            right: 0;
+            top: 12px;
+            font-size: 1.2rem;
+        }
+
+        .analogy-list li strong {
+            color: var(--primary-dark);
+        }
+
+        /* ========== Code Blocks ========== */
+        .code-wrapper {
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--bg-code);
+            box-shadow: 0 4px 12px rgba(74, 124, 89, 0.06);
+        }
+
+        .code-header {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 10px 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-lang {
+            background: var(--text-dark);
+            color: var(--secondary-light);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .code-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .code-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .code-dots span:nth-child(1) { background: #E8A5A5; }
+        .code-dots span:nth-child(2) { background: #E8D4A0; }
+        .code-dots span:nth-child(3) { background: #A5D4B0; }
+
+        pre {
+            padding: 20px;
+            overflow-x: auto;
+            margin: 0;
+            background: var(--bg-code);
+        }
+
+        pre code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.92rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            display: block;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .tag { color: #A0522D; font-weight: 600; }
+        .attr { color: #2E6B8A; font-weight: 600; }
+        .value { color: #4A7C59; }
+        .comment { color: #8B7356; font-style: italic; }
+        .text { color: var(--text-dark); }
+        .doctype { color: #A0522D; font-weight: 700; }
+
+        /* ========== Info Boxes ========== */
+        .info-box {
+            background: var(--info-bg);
+            border: 2px solid #B8D4DE;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: #2E6B8A;
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+
+        .info-box p {
+            color: #1F4A5E;
+            font-size: 0.95rem;
+        }
+
+        .warning-box {
+            background: var(--warning-bg);
+            border: 2px solid #E5D4B8;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: var(--secondary-dark);
+            margin-bottom: 8px;
+        }
+
+        .warning-box p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        .success-box {
+            background: var(--success-bg);
+            border: 2px solid #B8D4B5;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .success-box h4 {
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+
+        .success-box p {
+            color: #2D5F3F;
+            font-size: 0.95rem;
+        }
+
+        .danger-box {
+            background: var(--danger-bg);
+            border: 2px solid #E0B8B8;
+            border-right-width: 5px;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+
+        .danger-box h4 {
+            color: #8B3A3A;
+            margin-bottom: 8px;
+        }
+
+        .danger-box p {
+            color: #5C2828;
+            font-size: 0.95rem;
+        }
+
+        /* ========== Element Table ========== */
+        .element-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 20px 0;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .element-table thead {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .element-table th {
+            padding: 14px 18px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .element-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-soft);
+            color: var(--text-body);
+        }
+
+        .element-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .element-table tr:hover {
+            background: var(--bg-cream);
+        }
+
+        .element-table code {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* ========== Tag Card Grid ========== */
+        .tag-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin: 25px 0;
+        }
+
+        .tag-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tag-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+
+        .tag-card:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 124, 89, 0.1);
+        }
+
+        .tag-card .tag-name {
+            font-family: 'Fira Code', monospace;
+            background: var(--bg-code);
+            color: var(--primary-dark);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+            direction: ltr;
+        }
+
+        .tag-card h5 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+        }
+
+        .tag-card p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        /* ========== Media Preview ========== */
+        .media-preview {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .media-preview audio {
+            width: 100%;
+            max-width: 400px;
+            margin: 10px 0;
+        }
+
+        .media-preview video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .media-preview iframe {
+            width: 100%;
+            max-width: 560px;
+            height: 315px;
+            border: none;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        /* ========== Meta Tags Visual ========== */
+        .meta-visual {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .browser-tab {
+            background: var(--bg-soft);
+            border-radius: 10px 10px 0 0;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .browser-tab .tab-icon {
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        .browser-tab .tab-title {
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .browser-tab .tab-note {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-right: auto;
+        }
+
+        .browser-content {
+            padding: 20px;
+            background: var(--bg-cream);
+            border-radius: 0 0 10px 10px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .search-result {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: right;
+        }
+
+        .search-result .result-title {
+            color: var(--info);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+        }
+
+        .search-result .result-url {
+            color: var(--success);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            font-family: 'Fira Code', monospace;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        .search-result .result-desc {
+            color: var(--text-body);
+            font-size: 0.9rem;
+        }
+
+        /* ========== Checklist ========== */
+        .checklist {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item .check-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .checklist-item .check-content {
+            flex: 1;
+        }
+
+        .checklist-item .check-content strong {
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .checklist-item .check-content span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ========== Debug Section ========== */
+        .debug-box {
+            background: var(--danger-bg);
+            border: 2px solid var(--danger);
+            border-radius: 16px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .debug-box h3 {
+            color: #8B3A3A;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .debug-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .debug-wrong, .debug-right {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .debug-wrong {
+            border: 2px solid var(--danger);
+        }
+
+        .debug-right {
+            border: 2px solid var(--success);
+        }
+
+        .debug-label {
+            padding: 8px 15px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .debug-wrong .debug-label {
+            background: var(--danger);
+            color: white;
+        }
+
+        .debug-right .debug-label {
+            background: var(--success);
+            color: white;
+        }
+
+        .debug-wrong pre, .debug-right pre {
+            background: var(--bg-card);
+            padding: 15px;
+            margin: 0;
+        }
+
+        /* ========== Quiz Section ========== */
+        .quiz-section {
+            background: var(--bg-card);
+            border: 3px solid var(--success);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(91, 140, 90, 0.1);
+        }
+
+        .quiz-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--success-bg);
+        }
+
+        .quiz-header-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--success) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(91, 140, 90, 0.25);
+        }
+
+        .quiz-header h2 {
+            color: var(--primary-dark);
+            font-size: 1.6rem;
+        }
+
+        .quiz-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .question {
+            background: var(--bg-cream);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            border-color: var(--primary-light);
+            background: var(--bg-soft);
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(74, 124, 89, 0.25);
+        }
+
+        .question h4 {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .options {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+        }
+
+        .options li {
+            background: var(--bg-card);
+            border: 2px solid var(--border-soft);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-body);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .options li:hover {
+            border-color: var(--primary-light);
+            background: var(--bg-cream);
+            color: var(--text-dark);
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-soft);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            flex-shrink: 0;
+        }
+
+        /* ========== Homework Section ========== */
+        .homework-section {
+            background: var(--bg-card);
+            border: 3px solid var(--info);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(91, 139, 160, 0.1);
+        }
+
+        .homework-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed var(--info-bg);
+        }
+
+        .homework-header-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--info) 0%, #3D6B80 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 4px 12px rgba(91, 139, 160, 0.25);
+        }
+
+        .homework-header h2 {
+            color: #2E6B8A;
+            font-size: 1.6rem;
+        }
+
+        .homework-header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .homework-item {
+            background: var(--bg-cream);
+            border: 2px solid var(--border);
+            border-right: 5px solid var(--info);
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .homework-item:hover {
+            border-color: var(--info);
+            background: var(--info-bg);
+        }
+
+        .homework-item h4 {
+            color: #2E6B8A;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .homework-item p {
+            color: var(--text-body);
+            margin-bottom: 10px;
+        }
+
+        .homework-item ul {
+            list-style: none;
+            padding-right: 0;
+        }
+
+        .homework-item ul li {
+            padding: 6px 0;
+            padding-right: 25px;
+            position: relative;
+            color: var(--text-body);
+            font-size: 0.95rem;
+        }
+
+        .homework-item ul li::before {
+            content: '◆';
+            position: absolute;
+            right: 0;
+            color: var(--info);
+            font-size: 0.7rem;
+            top: 10px;
+        }
+
+        /* ========== Summary ========== */
+        .summary-box {
+            background: linear-gradient(135deg, var(--primary-soft) 0%, var(--bg-soft) 100%);
+            border: 3px solid var(--primary);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(74, 124, 89, 0.1);
+        }
+
+        .summary-box h3 {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .summary-list {
+            list-style: none;
+        }
+
+        .summary-list li {
+            padding: 10px 0;
+            padding-right: 35px;
+            position: relative;
+            color: var(--text-body);
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .summary-list li:last-child {
+            border-bottom: none;
+        }
+
+        .summary-list li::before {
+            content: '✓';
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: 900;
+            font-size: 1.3rem;
+        }
+
+        /* ========== Next Lecture Box ========== */
+        .next-box {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border: 2px dashed var(--secondary);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .next-box h3 {
+            color: var(--secondary-dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .next-box p {
+            color: var(--text-body);
+            font-size: 1.05rem;
+        }
+
+        .next-box .next-topic {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        /* ========== Footer ========== */
+        footer {
+            background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-soft) 100%);
+            border-top: 3px solid var(--primary);
+            padding: 40px 0;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        footer .logo {
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        footer .motto {
+            color: var(--primary-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        /* ========== Inline Code ========== */
+        code.inline {
+            background: var(--bg-code);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 5px;
+            color: var(--primary-dark);
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            font-weight: 600;
+            direction: ltr;
+            display: inline-block;
+        }
+
+        /* ========== Print Styles ========== */
+        @media print {
+            @page {
+                size: A4;
+                margin: 1.5cm;
+            }
+
+            body {
+                background: white;
+                font-size: 11pt;
+                line-height: 1.5;
+            }
+
+            header {
+                position: static;
+                box-shadow: none;
+            }
+
+            .hero, section, .card, .question, .homework-item {
+                page-break-inside: avoid;
+            }
+
+            h1, h2, h3, h4 {
+                page-break-after: avoid;
+            }
+
+            .code-wrapper {
+                page-break-inside: avoid;
+            }
+
+            .debug-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== Responsive ========== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .section-title { font-size: 1.5rem; }
+            .objectives-grid { grid-template-columns: 1fr; }
+            .tag-grid { grid-template-columns: 1fr; }
+            .debug-comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== Header ========== -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">S</div>
+                    <span>Sunshine T Academy</span>
+                </div>
+                <div class="lecture-badge">Frontend Level 1 • المحاضرة الخامسة</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- ========== Hero ========== -->
+        <section class="hero">
+            <span class="hero-tag">LECTURE 05</span>
+            <h1>HTML <span>Media</span> & Page Setup</h1>
+            <p>هنشوف إزاي نضيف Audio و Video و iframe في الصفحة، وكمان Meta Tags و Viewport و Favicon — تجهيز الصفحة بشكل احترافي.</p>
+        </section>
+
+        <!-- ========== Review Previous ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🔄</div>
+                <span>مراجعة سريعة</span>
+            </h2>
+
+            <div class="review-box">
+                <h3>📚 من المحاضرة اللي فاتت</h3>
+                <ul class="review-list">
+                    <li>Tables للبيانات المنظمة</li>
+                    <li>thead, tbody, tfoot, caption</li>
+                    <li>colspan و rowspan لدمج الخلايا</li>
+                    <li>Forms لجمع بيانات المستخدم</li>
+                    <li>Input types: text, email, password, date, radio, checkbox</li>
+                    <li>Validation: required, minlength, pattern</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h4>🎯 هدف النهاردة</h4>
+                <p>النهاردة هنكمل رحلة HTML ونضيف حاجتين مهمين: <strong>الوسائط (Media)</strong> زي الصوت والفيديو، و<strong>تجهيز الصفحة (Page Setup)</strong> بـ Meta Tags و Favicon و Open Graph — عشان الصفحة تبقى احترافية من كل النواحي.</p>
+            </div>
+        </section>
+
+        <!-- ========== Learning Objectives ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎯</div>
+                <span>الأهداف التعليمية</span>
+            </h2>
+            <p style="color: var(--text-muted); margin-bottom: 20px;">في نهاية المحاضرة، الطالب هيقدر:</p>
+
+            <div class="objectives-grid">
+                <div class="objective-item">
+                    <div class="objective-number">1</div>
+                    <div>
+                        <h4>إضافة Audio</h4>
+                        <p>يستخدم عنصر &lt;audio&gt; مع controls</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">2</div>
+                    <div>
+                        <h4>إضافة Video</h4>
+                        <p>يستخدم عنصر &lt;video&gt; مع poster و controls</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">3</div>
+                    <div>
+                        <h4>تضمين محتوى خارجي</h4>
+                        <p>يستخدم &lt;iframe&gt; لـ YouTube و Maps</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">4</div>
+                    <div>
+                        <h4>Meta Tags</h4>
+                        <p>يستخدم charset, viewport, description, keywords</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">5</div>
+                    <div>
+                        <h4>Favicon</h4>
+                        <p>يضيف أيقونة الموقع في التاب</p>
+                    </div>
+                </div>
+                <div class="objective-item">
+                    <div class="objective-number">6</div>
+                    <div>
+                        <h4>Open Graph</h4>
+                        <p>يتحكم في شكل الصفحة عند مشاركتها</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PART 1: AUDIO ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎵</div>
+                <span>الجزء الأول: الصوت (Audio)</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 عنصر &lt;audio&gt;</h3>
+                <p>عنصر <code class="inline">&lt;audio&gt;</code> بيستخدم لتشغيل ملفات الصوت في الصفحة. يدعم صيغ مختلفة زي <strong>MP3, WAV, OGG</strong>.</p>
+            </div>
+
+            <div class="tag-grid">
+                <div class="tag-card">
+                    <span class="tag-name">src</span>
+                    <h5>مصدر الملف</h5>
+                    <p>مسار ملف الصوت (mp3, wav, ogg)</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">controls</span>
+                    <h5>أزرار التحكم</h5>
+                    <p>يظهر play, pause, volume, timeline</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">autoplay</span>
+                    <h5>تشغيل تلقائي</h5>
+                    <p>يشتغل الصوت تلقائياً (ممنوع في أغلب المتصفحات)</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">loop</span>
+                    <h5>تكرار</h5>
+                    <p>يعيد تشغيل الصوت بعد ما يخلص</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">muted</span>
+                    <h5>كتم الصوت</h5>
+                    <p>يبدأ الصوت مكتوم (مطلوب مع autoplay)</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;source&gt;</span>
+                    <h5>مصادر متعددة</h5>
+                    <p>لتوفير صيغ مختلفة للمتصفحات</p>
+                </div>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — Audio بسيط</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- Audio بسيط --&gt;</span>
+<span class="tag">&lt;audio</span> <span class="attr">src</span>=<span class="value">"audio/song.mp3"</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+    <span class="text">متصفحك مش بيدعم عنصر audio.</span>
+<span class="tag">&lt;/audio&gt;</span>
+
+<span class="comment">&lt;!-- Audio مع مصادر متعددة --&gt;</span>
+<span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"audio/song.mp3"</span> <span class="attr">type</span>=<span class="value">"audio/mpeg"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"audio/song.ogg"</span> <span class="attr">type</span>=<span class="value">"audio/ogg"</span><span class="tag">&gt;</span>
+    <span class="text">متصفحك مش بيدعم تشغيل الصوت.</span>
+<span class="tag">&lt;/audio&gt;</span></code></pre>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ ملاحظة مهمة عن autoplay</h4>
+                <p>أغلب المتصفحات الحديثة <strong>تمنع autoplay</strong> إلا لو الصوت <code class="inline">muted</code>. ده عشان تجربة المستخدم — مفيش حد يحب موقع يبدأ يشغل صوت من غير إذنه!</p>
+            </div>
+
+            <div class="media-preview">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🎵 شكل Audio في المتصفح:</h4>
+                <audio controls>
+                    <source src="audio/sample.mp3" type="audio/mpeg">
+                    متصفحك لا يدعم عنصر الصوت.
+                </audio>
+            </div>
+        </section>
+
+        <!-- ========== PART 2: VIDEO ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎬</div>
+                <span>الجزء الثاني: الفيديو (Video)</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 عنصر &lt;video&gt;</h3>
+                <p>عنصر <code class="inline">&lt;video&gt;</code> بيستخدم لتشغيل ملفات الفيديو. يدعم صيغ <strong>MP4, WebM, OGG</strong>. MP4 هو الأكثر استخداماً.</p>
+            </div>
+
+            <div class="tag-grid">
+                <div class="tag-card">
+                    <span class="tag-name">src</span>
+                    <h5>مصدر الفيديو</h5>
+                    <p>مسار ملف الفيديو (mp4, webm)</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">controls</span>
+                    <h5>أزرار التحكم</h5>
+                    <p>play, pause, volume, fullscreen</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">poster</span>
+                    <h5>صورة الغلاف</h5>
+                    <p>صورة تظهر قبل ما الفيديو يشتغل</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">width / height</span>
+                    <h5>المقاس</h5>
+                    <p>عرض وارتفاع الفيديو بالبكسل</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">autoplay + muted</span>
+                    <h5>تشغيل تلقائي</h5>
+                    <p>لازم يكون muted عشان يشتغل</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">&lt;track&gt;</span>
+                    <h5>الترجمة (Subtitles)</h5>
+                    <p>إضافة ملفات ترجمة (WebVTT)</p>
+                </div>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — Video</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- Video بسيط --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">src</span>=<span class="value">"video/intro.mp4"</span> <span class="attr">controls</span> <span class="attr">width</span>=<span class="value">"600"</span><span class="tag">&gt;</span>
+    <span class="text">متصفحك مش بيدعم عنصر video.</span>
+<span class="tag">&lt;/video&gt;</span>
+
+<span class="comment">&lt;!-- Video مع poster ومصادر متعددة --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">controls</span> <span class="attr">poster</span>=<span class="value">"images/video-cover.jpg"</span> <span class="attr">width</span>=<span class="value">"600"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"video/intro.mp4"</span> <span class="attr">type</span>=<span class="value">"video/mp4"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"video/intro.webm"</span> <span class="attr">type</span>=<span class="value">"video/webm"</span><span class="tag">&gt;</span>
+    <span class="text">متصفحك مش بيدعم تشغيل الفيديو.</span>
+<span class="tag">&lt;/video&gt;</span>
+
+<span class="comment">&lt;!-- Video مع ترجمة --&gt;</span>
+<span class="tag">&lt;video</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"video/movie.mp4"</span> <span class="attr">type</span>=<span class="value">"video/mp4"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;track</span> <span class="attr">src</span>=<span class="value">"subtitles/ar.vtt"</span> <span class="attr">kind</span>=<span class="value">"subtitles"</span> 
+           <span class="attr">srclang</span>=<span class="value">"ar"</span> <span class="attr">label</span>=<span class="value">"عربي"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/video&gt;</span></code></pre>
+            </div>
+
+            <div class="info-box">
+                <h4>💡 نصيحة احترافية</h4>
+                <p>استخدم <code class="inline">poster</code> دائماً مع الفيديوهات. الصورة بتدي انطباع أول كويس قبل ما المستخدم يضغط play. وكمان بتحسن أداء الصفحة لأن المتصفح مش بيحمل الفيديو كله أول ما يفتح.</p>
+            </div>
+
+            <div class="media-preview">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🎬 شكل Video في المتصفح:</h4>
+                <video controls width="500" poster="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=500">
+                    <source src="video/sample.mp4" type="video/mp4">
+                    متصفحك لا يدعم عنصر الفيديو.
+                </video>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ ملاحظة مهمة</h4>
+                <p>ملفات الفيديو كبيرة جداً! لو رفعت فيديو على موقعك، هيأثر على سرعة الصفحة. الحل الأفضل: استخدم <strong>YouTube أو Vimeo</strong> وارفع الفيديوهات عليهم، وبعدها ضيفهم في موقعك بـ <code class="inline">&lt;iframe&gt;</code>.</p>
+            </div>
+        </section>
+
+        <!-- ========== PART 3: IFRAME ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🖥️</div>
+                <span>الجزء الثالث: Iframe — المحتوى الخارجي</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 عنصر &lt;iframe&gt;</h3>
+                <p>عنصر <code class="inline">&lt;iframe&gt;</code> بيستخدم لتضمين <strong>صفحة أو محتوى من موقع تاني</strong> جوه صفحتك. زي فيديو YouTube، خريطة Google Maps، أو حتى موقع كامل.</p>
+            </div>
+
+            <div class="analogy-box">
+                <h3>💡 تشبيه من الحياة</h3>
+                <ul class="analogy-list">
+                    <li><strong>iframe</strong> = "شباك" في حيطة بيتك بتطل بيه على بيت تاني</li>
+                    <li>أنت بتشوف المحتوى من الموقع التاني، لكن لسه أنت في موقعك</li>
+                    <li>زي ما تحط شاشة TV في أوضتك بتعرض قناة من بره</li>
+                </ul>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — iframe</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- تضمين فيديو YouTube --&gt;</span>
+<span class="tag">&lt;iframe</span> 
+    <span class="attr">src</span>=<span class="value">"https://www.youtube.com/embed/VIDEO_ID"</span> 
+    <span class="attr">width</span>=<span class="value">"560"</span> 
+    <span class="attr">height</span>=<span class="value">"315"</span> 
+    <span class="attr">allowfullscreen</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/iframe&gt;</span>
+
+<span class="comment">&lt;!-- تضمين خريطة Google Maps --&gt;</span>
+<span class="tag">&lt;iframe</span>
+    <span class="attr">src</span>=<span class="value">"https://www.google.com/maps/embed?pb=..."</span>
+    <span class="attr">width</span>=<span class="value">"600"</span>
+    <span class="attr">height</span>=<span class="value">"450"</span>
+    <span class="attr">allowfullscreen</span>
+    <span class="attr">loading</span>=<span class="value">"lazy"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/iframe&gt;</span>
+
+<span class="comment">&lt;!-- تضمين موقع تاني --&gt;</span>
+<span class="tag">&lt;iframe</span>
+    <span class="attr">src</span>=<span class="value">"https://example.com"</span>
+    <span class="attr">width</span>=<span class="value">"800"</span>
+    <span class="attr">height</span>=<span class="value">"600"</span>
+    <span class="attr">title</span>=<span class="value">"موقع خارجي"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/iframe&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔍 Attributes مهمة للـ iframe</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>الوظيفة</th>
+                            <th>ملاحظات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>src</code></td>
+                            <td>عنوان المحتوى الخارجي</td>
+                            <td>مطلوب</td>
+                        </tr>
+                        <tr>
+                            <td><code>width / height</code></td>
+                            <td>مقاس الـ iframe</td>
+                            <td>بالبكسل</td>
+                        </tr>
+                        <tr>
+                            <td><code>allowfullscreen</code></td>
+                            <td>يسمح بملء الشاشة</td>
+                            <td>مهم لـ YouTube</td>
+                        </tr>
+                        <tr>
+                            <td><code>loading="lazy"</code></td>
+                            <td>تحميل كسول</td>
+                            <td>بيحسن الأداء</td>
+                        </tr>
+                        <tr>
+                            <td><code>title</code></td>
+                            <td>وصف للـ iframe</td>
+                            <td>مهم لـ Accessibility</td>
+                        </tr>
+                        <tr>
+                            <td><code>sandbox</code></td>
+                            <td>قيود أمان</td>
+                            <td>يحدد صلاحيات المحتوى</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="danger-box">
+                <h4>🚨 أمان مهم</h4>
+                <p>الـ iframe ممكن يكون <strong>خطر أمني</strong> لو استخدمته مع مواقع مش موثوقة. ممكن يستخدم في هجمات زي <strong>Clickjacking</strong>. دايماً استخدم <code class="inline">sandbox</code> attribute لتحديد صلاحيات المحتوى المضمن.</p>
+            </div>
+
+            <div class="media-preview">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px;">🖥️ شكل iframe في المتصفح (مثال YouTube):</h4>
+                <iframe 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                    title="مثال فيديو YouTube"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- ========== PART 4: META TAGS ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🏷️</div>
+                <span>الجزء الرابع: Meta Tags — تجهيز الصفحة</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 ما هي Meta Tags؟</h3>
+                <p>الـ Meta Tags هي عناصر في الـ <code class="inline">&lt;head&gt;</code> بتوفر <strong>معلومات عن الصفحة</strong> للمتصفح ومحركات البحث. المستخدم مش بيشوفها، لكنها مهمة جداً.</p>
+            </div>
+
+            <div class="analogy-box">
+                <h3>💡 تشبيه من الحياة</h3>
+                <ul class="analogy-list">
+                    <li><strong>Meta Tags</strong> = "بطاقة التعريف" بتاعة الصفحة</li>
+                    <li>زي بطاقة الرقم القومي — فيها اسمك، سنك، عنوانك، لكن مش أنت</li>
+                    <li>محركات البحث بتقرأ البطاقة دي عشان تفهم الصفحة</li>
+                </ul>
+            </div>
+
+            <div class="tag-grid">
+                <div class="tag-card">
+                    <span class="tag-name">charset</span>
+                    <h5>ترميز الحروف</h5>
+                    <p>UTF-8 لدعم كل اللغات. لازم يكون أول عنصر في head.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">viewport</span>
+                    <h5>إعدادات العرض</h5>
+                    <p>بيتحكم في كيف الصفحة تظهر على الموبايل. مهم جداً لـ Responsive.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">description</span>
+                    <h5>وصف الصفحة</h5>
+                    <p>يظهر في نتائج البحث. 150-160 حرف مثالي.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">keywords</span>
+                    <h5>كلمات مفتاحية</h5>
+                    <p>كانت مهمة زمان، دلوقتي Google مش بياخدها في الاعتبار.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">author</span>
+                    <h5>الكاتب</h5>
+                    <p>اسم صاحب الصفحة أو الموقع.</p>
+                </div>
+                <div class="tag-card">
+                    <span class="tag-name">robots</span>
+                    <h5>تعليمات لمحركات البحث</h5>
+                    <p>index/noindex, follow/nofollow</p>
+                </div>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — Meta Tags كاملة</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="tag">&lt;head&gt;</span>
+    <span class="comment">&lt;!-- الترميز — لازم يكون أول حاجة --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- Responsive — مهم جداً --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"viewport"</span> 
+          <span class="attr">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- وصف الصفحة لـ SEO --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"description"</span> 
+          <span class="attr">content</span>=<span class="value">"تعلم HTML و CSS من الصفر في Sunshine T Academy"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- الكاتب --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"author"</span> <span class="attr">content</span>=<span class="value">"Sunshine T Academy"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- كلمات مفتاحية (اختياري) --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"keywords"</span> 
+          <span class="attr">content</span>=<span class="value">"HTML, CSS, Web Development, Frontend"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- عنوان الصفحة --&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">Sunshine T Academy | تعلم البرمجة</span><span class="tag">&lt;/title&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+            </div>
+
+            <div class="meta-visual">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px; text-align: center;">🔍 شكل الصفحة في نتائج البحث:</h4>
+                
+                <div class="browser-tab">
+                    <div class="tab-icon"></div>
+                    <span class="tab-title">Sunshine T Academy | تعلم البرمجة</span>
+                    <span class="tab-note">← title tag</span>
+                </div>
+                <div class="browser-content">
+                    <p>المحتوى الظاهر في الصفحة</p>
+                </div>
+
+                <div class="search-result" style="margin-top: 20px;">
+                    <div class="result-title">Sunshine T Academy | تعلم البرمجة</div>
+                    <div class="result-url">https://sunshine-academy.com</div>
+                    <div class="result-desc">تعلم HTML و CSS من الصفر في Sunshine T Academy. كورس Frontend احترافي يخليك تبني مواقع حقيقية...</div>
+                </div>
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">↑ description tag — اللي بيظهر في Google</p>
+            </div>
+
+            <div class="card">
+                <h3>🔹 viewport — مهم جداً لـ Responsive</h3>
+                <p>لو مش حطيت viewport meta tag، الصفحة هتظهر على الموبايل <strong>صغيرة جداً</strong> كأنها على كمبيوتر مصغر.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">شرح viewport</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"viewport"</span> 
+      <span class="attr">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- width=device-width = عرض الصفحة = عرض الشاشة --&gt;</span>
+<span class="comment">&lt;!-- initial-scale=1.0 = نسبة التكبير الأولية = 100% --&gt;</span></code></pre>
+            </div>
+
+            <div class="danger-box">
+                <h4>🚨 ممنوع تنسى viewport!</h4>
+                <p>من غير viewport، كل شغلك في <strong>Responsive Design</strong> (المحاضرة 11) مش هيشتغل. ده أول خطوة في أي صفحة Responsive.</p>
+            </div>
+        </section>
+
+        <!-- ========== PART 5: FAVICON ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">⭐</div>
+                <span>الجزء الخامس: Favicon — أيقونة الموقع</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 ما هو Favicon؟</h3>
+                <p>الـ Favicon هي <strong>الأيقونة الصغيرة</strong> اللي بتظهر في:</p>
+                <p>• تاب المتصفح (Browser Tab)</p>
+                <p>• قائمة المفضلة (Bookmarks)</p>
+                <p>• نتائج البحث</p>
+                <p>• شريط العنوان</p>
+            </div>
+
+            <div class="meta-visual">
+                <h4 style="color: var(--primary-dark); margin-bottom: 15px; text-align: center;">⭐ شكل Favicon في التاب:</h4>
+                <div class="browser-tab">
+                    <div class="tab-icon"></div>
+                    <span class="tab-title">Sunshine T Academy</span>
+                    <span class="tab-note">← الأيقونة دي هي Favicon</span>
+                </div>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — Favicon</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- Favicon أساسي --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"icon"</span> <span class="attr">type</span>=<span class="value">"image/png"</span> <span class="attr">href</span>=<span class="value">"favicon.png"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Favicon بصيغ مختلفة (Best Practice) --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"icon"</span> <span class="attr">type</span>=<span class="value">"image/x-icon"</span> <span class="attr">href</span>=<span class="value">"favicon.ico"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"icon"</span> <span class="attr">type</span>=<span class="value">"image/png"</span> <span class="attr">sizes</span>=<span class="value">"32x32"</span> <span class="attr">href</span>=<span class="value">"favicon-32x32.png"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"icon"</span> <span class="attr">type</span>=<span class="value">"image/png"</span> <span class="attr">sizes</span>=<span class="value">"16x16"</span> <span class="attr">href</span>=<span class="value">"favicon-16x16.png"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"apple-touch-icon"</span> <span class="attr">sizes</span>=<span class="value">"180x180"</span> <span class="attr">href</span>=<span class="value">"apple-touch-icon.png"</span><span class="tag">&gt;</span></code></pre>
+            </div>
+
+            <div class="info-box">
+                <h4>💡 نصيحة</h4>
+                <p>استخدم موقع <strong>realfavicongenerator.net</strong> عشان يولّدلك كل المقاسات والأيقونات المطلوبة من صورة واحدة. هيوفرلك وقت كتير.</p>
+            </div>
+        </section>
+
+        <!-- ========== PART 6: OPEN GRAPH ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🔗</div>
+                <span>الجزء السادس: Open Graph — المشاركة</span>
+            </h2>
+
+            <div class="card">
+                <h3>📖 ما هو Open Graph؟</h3>
+                <p>Open Graph هي <strong>Meta Tags خاصة</strong> بتتحكم في شكل الصفحة لما حد يشاركها على <strong>Facebook, Twitter, LinkedIn, WhatsApp</strong>.</p>
+                <p>بدونها، الرابط هيظهر بشكل عشوائي. معاها، أنت بتتحكم في الصورة والعنوان والوصف.</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — Open Graph</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="comment">&lt;!-- Open Graph Tags --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:title"</span> <span class="attr">content</span>=<span class="value">"Sunshine T Academy"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:description"</span> 
+      <span class="attr">content</span>=<span class="value">"تعلم HTML و CSS من الصفر"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:image"</span> <span class="attr">content</span>=<span class="value">"https://site.com/preview.jpg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:url"</span> <span class="attr">content</span>=<span class="value">"https://site.com"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:type"</span> <span class="attr">content</span>=<span class="value">"website"</span><span class="tag">&gt;</span>
+
+<span class="comment">&lt;!-- Twitter Card --&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"twitter:card"</span> <span class="attr">content</span>=<span class="value">"summary_large_image"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"twitter:title"</span> <span class="attr">content</span>=<span class="value">"Sunshine T Academy"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"twitter:description"</span> <span class="attr">content</span>=<span class="value">"تعلم البرمجة"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"twitter:image"</span> <span class="attr">content</span>=<span class="value">"https://site.com/preview.jpg"</span><span class="tag">&gt;</span></code></pre>
+            </div>
+
+            <div class="card">
+                <h3>🔍 شكل الرابط عند المشاركة</h3>
+                <table class="element-table">
+                    <thead>
+                        <tr>
+                            <th>بدون Open Graph</th>
+                            <th>مع Open Graph</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>رابط فقط + عنوان عشوائي</td>
+                            <td>صورة + عنوان + وصف احترافي</td>
+                        </tr>
+                        <tr>
+                            <td>مفيش صورة</td>
+                            <td>صورة مختارة بعناية</td>
+                        </tr>
+                        <tr>
+                            <td>وصف غير واضح</td>
+                            <td>وصف جذاب ومحدد</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ ليه Open Graph مهم؟</h4>
+                <p>1. <strong>مظهر احترافي</strong> لما حد يشارك موقعك.</p>
+                <p>2. <strong>زيادة الزيارات</strong> — الصورة الجذابة بتجذب نقرات أكتر.</p>
+                <p>3. <strong>Branding</strong> — كل مشاركة بتظهر علامتك التجارية.</p>
+            </div>
+        </section>
+
+        <!-- ========== Complete Head Structure ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">📐</div>
+                <span>الهيكل الكامل للـ Head</span>
+            </h2>
+
+            <div class="card">
+                <h3>📐 ترتيب صحيح للـ Head</h3>
+                <p>ده الترتيب المثالي لأي صفحة HTML احترافية:</p>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">HTML — Head كامل</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="tag">&lt;head&gt;</span>
+    <span class="comment">&lt;!-- 1. Charset --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- 2. Viewport (Responsive) --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"viewport"</span> <span class="attr">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- 3. SEO Meta Tags --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"description"</span> <span class="attr">content</span>=<span class="value">"وصف الصفحة"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"author"</span> <span class="attr">content</span>=<span class="value">"اسمك"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- 4. Title --&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">عنوان الصفحة</span><span class="tag">&lt;/title&gt;</span>
+    
+    <span class="comment">&lt;!-- 5. Favicon --&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"icon"</span> <span class="attr">type</span>=<span class="value">"image/png"</span> <span class="attr">href</span>=<span class="value">"favicon.png"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- 6. Open Graph --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:title"</span> <span class="attr">content</span>=<span class="value">"..."</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:description"</span> <span class="attr">content</span>=<span class="value">"..."</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:image"</span> <span class="attr">content</span>=<span class="value">"..."</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- 7. CSS Files --&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span> <span class="attr">href</span>=<span class="value">"css/style.css"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- 8. Google Fonts --&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="value">"https://fonts.googleapis.com/..."</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+            </div>
+        </section>
+
+        <!-- ========== Page Setup Checklist ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">✅</div>
+                <span>Checklist — تجهيز الصفحة</span>
+            </h2>
+
+            <div class="card">
+                <h3>📋 قبل ما تنشر أي صفحة، تأكد من:</h3>
+            </div>
+
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>DOCTYPE و lang و dir</strong>
+                        <span>&lt;!DOCTYPE html&gt; + lang="ar" + dir="rtl"</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>charset UTF-8</strong>
+                        <span>أول عنصر في head — لدعم العربية</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Viewport Meta Tag</strong>
+                        <span>width=device-width, initial-scale=1.0</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Title واضح ووصفي</strong>
+                        <span>50-60 حرف، يوصف محتوى الصفحة</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Meta Description</strong>
+                        <span>150-160 حرف، يوصف الصفحة لمحركات البحث</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Favicon</strong>
+                        <span>أيقونة واضحة تظهر في التاب</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Semantic HTML</strong>
+                        <span>header, nav, main, section, article, footer</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>h1 واحد فقط</strong>
+                        <span>العنوان الرئيسي للصفحة</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>alt لكل الصور</strong>
+                        <span>وصف واضح لكل صورة</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Labels لكل Inputs</strong>
+                        <span>for = id — مهم لـ Accessibility</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Open Graph Tags</strong>
+                        <span>og:title, og:description, og:image</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>تنظيم الملفات</strong>
+                        <span>images/, css/, js/ — أسماء lowercase + dash</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>Comments في الكود</strong>
+                        <span>تنظيم وتوضيح الأقسام</span>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-icon">✓</div>
+                    <div class="check-content">
+                        <strong>اختبار على متصفحات مختلفة</strong>
+                        <span>Chrome, Firefox, Edge, Safari</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Debugging Activity ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🐛</div>
+                <span>Debugging — اكتشف الأخطاء</span>
+            </h2>
+
+            <div class="debug-box">
+                <h3>🔍 نشاط: اكتشف الأخطاء في الـ Head ده</h3>
+                <p style="color: #5C2828;">الكود ده فيه <strong>5 أخطاء شائعة</strong> في تجهيز الصفحة.</p>
+
+                <div class="code-wrapper">
+                    <div class="code-header">
+                        <span class="code-lang">كود فيه أخطاء ❌</span>
+                        <div class="code-dots"><span></span><span></span><span></span></div>
+                    </div>
+<pre><code><span class="tag">&lt;head&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">صفحتي</span><span class="tag">&lt;/title&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span> <span class="attr">href</span>=<span class="value">"style.css"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"description"</span> <span class="attr">content</span>=<span class="value">"صفحة"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"favicon.png"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+                </div>
+
+                <div class="debug-comparison">
+                    <div class="debug-wrong">
+                        <div class="debug-label">❌ الأخطاء</div>
+                        <pre><code style="font-size: 0.85rem;">1. charset مش أول حاجة
+2. viewport ناقص
+3. title مش وصفي
+4. Favicon بـ &lt;img&gt; مش &lt;link&gt;
+5. description قصير جداً</code></pre>
+                    </div>
+                    <div class="debug-right">
+                        <div class="debug-label">✅ الكود الصحيح</div>
+                        <pre><code style="font-size: 0.85rem;"><span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"viewport"</span> 
+    <span class="attr">content</span>=<span class="value">"width=device-width..."</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;title&gt;</span>عنوان وصفي<span class="tag">&lt;/title&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"description"</span> 
+    <span class="attr">content</span>=<span class="value">"وصف 150 حرف..."</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"icon"</span> <span class="attr">href</span>=<span class="value">"favicon.png"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span> <span class="attr">href</span>=<span class="value">"..."</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span></code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== Mini Project ========== -->
+        <section>
+            <h2 class="section-title">
+                <div class="title-icon">🎨</div>
+                <span>مشروع المحاضرة: Media Gallery</span>
+            </h2>
+
+            <div class="card">
+                <h3>📋 المطلوب</h3>
+                <p>ابني صفحة <strong>"Media Gallery"</strong> كاملة تحتوي على:</p>
+                <ul style="list-style: none; padding-right: 0; margin-top: 15px;">
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> Head كامل بكل Meta Tags</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> Favicon</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> Open Graph Tags</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> Semantic HTML (header, main, section, footer)</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> Audio player مع controls</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> Video player مع poster</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> iframe لفيديو YouTube</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> iframe لخريطة Google Maps</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> figure + figcaption للصور</li>
+                    <li style="padding: 8px 0; padding-right: 25px; position: relative; color: var(--text-body);"><span style="position: absolute; right: 0; color: var(--success); font-weight: 900;">✓</span> Comments لتنظيم الكود</li>
+                </ul>
+            </div>
+
+            <div class="code-wrapper">
+                <div class="code-header">
+                    <span class="code-lang">مثال للحل</span>
+                    <div class="code-dots"><span></span><span></span><span></span></div>
+                </div>
+<pre><code><span class="doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="value">"ar"</span> <span class="attr">dir</span>=<span class="value">"rtl"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;head&gt;</span>
+    <span class="comment">&lt;!-- Charset --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="value">"UTF-8"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- Viewport --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"viewport"</span> 
+          <span class="attr">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- SEO --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"description"</span> 
+          <span class="attr">content</span>=<span class="value">"معرض وسائط متعددة — مشروع من Sunshine T Academy"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"author"</span> <span class="attr">content</span>=<span class="value">"أحمد محمد"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- Title --&gt;</span>
+    <span class="tag">&lt;title&gt;</span><span class="text">معرض الوسائط | Sunshine Academy</span><span class="tag">&lt;/title&gt;</span>
+    
+    <span class="comment">&lt;!-- Favicon --&gt;</span>
+    <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="value">"icon"</span> <span class="attr">type</span>=<span class="value">"image/png"</span> <span class="attr">href</span>=<span class="value">"images/favicon.png"</span><span class="tag">&gt;</span>
+    
+    <span class="comment">&lt;!-- Open Graph --&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:title"</span> <span class="attr">content</span>=<span class="value">"معرض الوسائط"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:description"</span> <span class="attr">content</span>=<span class="value">"معرض صوتيات وفيديوهات"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="value">"og:image"</span> <span class="attr">content</span>=<span class="value">"images/preview.jpg"</span><span class="tag">&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+<span class="tag">&lt;body&gt;</span>
+
+    <span class="comment">&lt;!-- رأس الصفحة --&gt;</span>
+    <span class="semantic">&lt;header&gt;</span>
+        <span class="tag">&lt;h1&gt;</span><span class="text">معرض الوسائط</span><span class="tag">&lt;/h1&gt;</span>
+        <span class="semantic">&lt;nav&gt;</span>
+            <span class="tag">&lt;ul&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#audio"</span><span class="tag">&gt;</span><span class="text">الصوتيات</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#video"</span><span class="tag">&gt;</span><span class="text">الفيديوهات</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+                <span class="tag">&lt;li&gt;</span><span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"#maps"</span><span class="tag">&gt;</span><span class="text">الخرائط</span><span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/li&gt;</span>
+            <span class="tag">&lt;/ul&gt;</span>
+        <span class="semantic">&lt;/nav&gt;</span>
+    <span class="semantic">&lt;/header&gt;</span>
+
+    <span class="comment">&lt;!-- المحتوى الرئيسي --&gt;</span>
+    <span class="semantic">&lt;main&gt;</span>
+
+        <span class="comment">&lt;!-- قسم الصوتيات --&gt;</span>
+        <span class="semantic">&lt;section</span> <span class="attr">id</span>=<span class="value">"audio"</span><span class="semantic">&gt;</span>
+            <span class="tag">&lt;h2&gt;</span><span class="text">الصوتيات</span><span class="tag">&lt;/h2&gt;</span>
+            <span class="tag">&lt;audio</span> <span class="attr">controls</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"audio/song.mp3"</span> <span class="attr">type</span>=<span class="value">"audio/mpeg"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;/audio&gt;</span>
+        <span class="semantic">&lt;/section&gt;</span>
+
+        <span class="comment">&lt;!-- قسم الفيديوهات --&gt;</span>
+        <span class="semantic">&lt;section</span> <span class="attr">id</span>=<span class="value">"video"</span><span class="semantic">&gt;</span>
+            <span class="tag">&lt;h2&gt;</span><span class="text">الفيديوهات</span><span class="tag">&lt;/h2&gt;</span>
+            
+            <span class="comment">&lt;!-- فيديو محلي --&gt;</span>
+            <span class="tag">&lt;video</span> <span class="attr">controls</span> <span class="attr">poster</span>=<span class="value">"images/cover.jpg"</span> <span class="attr">width</span>=<span class="value">"500"</span><span class="tag">&gt;</span>
+                <span class="tag">&lt;source</span> <span class="attr">src</span>=<span class="value">"video/intro.mp4"</span> <span class="attr">type</span>=<span class="value">"video/mp4"</span><span class="tag">&gt;</span>
+            <span class="tag">&lt;/video&gt;</span>
+            
+            <span class="comment">&lt;!-- فيديو YouTube --&gt;</span>
+            <span class="tag">&lt;iframe</span> 
+                <span class="attr">src</span>=<span class="value">"https://www.youtube.com/embed/VIDEO_ID"</span>
+                <span class="attr">width</span>=<span class="value">"560"</span> <span class="attr">height</span>=<span class="value">"315"</span>
+                <span class="attr">title</span>=<span class="value">"فيديو تعليمي"</span>
+                <span class="attr">allowfullscreen</span><span class="tag">&gt;&lt;/iframe&gt;</span>
+        <span class="semantic">&lt;/section&gt;</span>
+
+        <span class="comment">&lt;!-- قسم الخرائط --&gt;</span>
+        <span class="semantic">&lt;section</span> <span class="attr">id</span>=<span class="value">"maps"</span><span class="semantic">&gt;</span>
+            <span class="tag">&lt;h2&gt;</span><span class="text">موقعنا</span><span class="tag">&lt;/h2&gt;</span>
+            <span class="tag">&lt;iframe</span>
+                <span class="attr">src</span>=<span class="value">"https://www.google.com/maps/embed?pb=..."</span>
+                <span class="attr">width</span>=<span class="value">"600"</span> <span class="attr">height</span>=<span class="value">"450"</span>
+                <span class="attr">title</span>=<span class="value">"موقع الأكاديمية"</span>
+                <span class="attr">loading</span>=<span class="value">"lazy"</span><span class="tag">&gt;&lt;/iframe&gt;</span>
+        <span class="semantic">&lt;/section&gt;</span>
+
+    <span class="semantic">&lt;/main&gt;</span>
+
+    <span class="comment">&lt;!-- تذييل الصفحة --&gt;</span>
+    <span class="semantic">&lt;footer&gt;</span>
+        <span class="tag">&lt;p&gt;</span><span class="text">© 2024 Sunshine T Academy</span><span class="tag">&lt;/p&gt;</span>
+    <span class="semantic">&lt;/footer&gt;</span>
+
+<span class="tag">&lt;/body&gt;</span>
+<span class="tag">&lt;/html&gt;</span></code></pre>
+            </div>
+        </section>
+
+        <!-- ========== Summary ========== -->
+        <section>
+            <div class="summary-box">
+                <h3>📌 ملخص المحاضرة</h3>
+                <ul class="summary-list">
+                    <li>&lt;audio&gt; لتشغيل ملفات الصوت مع controls</li>
+                    <li>&lt;video&gt; لتشغيل الفيديوهات مع poster و controls</li>
+                    <li>&lt;iframe&gt; لتضمين محتوى خارجي (YouTube, Maps)</li>
+                    <li>autoplay ممنوع إلا لو muted</li>
+                    <li>charset="UTF-8" لازم يكون أول عنصر في head</li>
+                    <li>viewport مهم جداً لـ Responsive</li>
+                    <li>Meta description يظهر في نتائج البحث</li>
+                    <li>Favicon = أيقونة الموقع في التاب</li>
+                    <li>Open Graph يتحكم في شكل الصفحة عند المشاركة</li>
+                    <li>ترتيب head: charset → viewport → title → meta → favicon → og → css</li>
+                    <li>استخدم YouTube بدل رفع الفيديو مباشرة للأداء</li>
+                    <li>Checklist تجهيز الصفحة قبل النشر</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== Next Lecture ========== -->
+        <section>
+            <div class="next-box">
+                <h3>🎉 مبروك! خلصنا HTML!</h3>
+                <p>المحاضرة الجاية هنبدأ رحلة <strong>CSS</strong> — اللي بيحول الصفحة من هيكل بسيط لموقع جميل ومنسق.</p>
+                <p style="margin-top: 10px;">هنبدأ بـ: <strong>CSS Fundamentals</strong> — Selectors, Colors, Backgrounds, Units</p>
+                <span class="next-topic">المحاضرة القادمة: CSS Fundamentals</span>
+            </div>
+        </section>
+
+        <!-- ========== Quiz Section ========== -->
+        <section class="quiz-section">
+            <div class="quiz-header">
+                <div class="quiz-header-icon">❓</div>
+                <div>
+                    <h2>أسئلة اختيار من متعدد</h2>
+                    <p>10 أسئلة لاختبار فهمك لمحتوى المحاضرة</p>
+                </div>
+            </div>
+
+            <!-- Q1 -->
+            <div class="question">
+                <span class="question-number">سؤال 1</span>
+                <h4>ما هو العنصر المستخدم لتشغيل ملفات الصوت في HTML؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;sound&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;music&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;audio&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;mp3&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question">
+                <span class="question-number">سؤال 2</span>
+                <h4>ما وظيفة attribute "controls" في audio و video؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> يخفي المشغل</li>
+                    <li><span class="option-letter">ب</span> يظهر أزرار التشغيل والتحكم</li>
+                    <li><span class="option-letter">ج</span> يشغل الملف تلقائياً</li>
+                    <li><span class="option-letter">د</span> يكتم الصوت</li>
+                </ul>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question">
+                <span class="question-number">سؤال 3</span>
+                <h4>ما وظيفة attribute "poster" في عنصر video؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> يحدد حجم الفيديو</li>
+                    <li><span class="option-letter">ب</span> صورة تظهر قبل ما الفيديو يشتغل</li>
+                    <li><span class="option-letter">ج</span> يضيف ترجمة للفيديو</li>
+                    <li><span class="option-letter">د</span> يحدد مدة الفيديو</li>
+                </ul>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question">
+                <span class="question-number">سؤال 4</span>
+                <h4>ما هو العنصر المستخدم لتضمين محتوى من موقع تاني؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;embed&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;include&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;iframe&gt;</li>
+                    <li><span class="option-letter">د</span> &lt;external&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question">
+                <span class="question-number">سؤال 5</span>
+                <h4>ليه لازم نضيف viewport meta tag؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> عشان الصفحة تظهر بشكل صحيح على الموبايل</li>
+                    <li><span class="option-letter">ب</span> عشان الصفحة تشتغل أسرع</li>
+                    <li><span class="option-letter">ج</span> عشان تتحسن في Google</li>
+                    <li><span class="option-letter">د</span> عشان تظهر الأيقونة في التاب</li>
+                </ul>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question">
+                <span class="question-number">سؤال 6</span>
+                <h4>ما هو أول عنصر لازم يكون في &lt;head&gt;؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> &lt;title&gt;</li>
+                    <li><span class="option-letter">ب</span> &lt;meta charset="UTF-8"&gt;</li>
+                    <li><span class="option-letter">ج</span> &lt;link&gt; للـ CSS</li>
+                    <li><span class="option-letter">د</span> &lt;meta name="viewport"&gt;</li>
+                </ul>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question">
+                <span class="question-number">سؤال 7</span>
+                <h4>ما هو Favicon؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> صورة الخلفية</li>
+                    <li><span class="option-letter">ب</span> أيقونة صغيرة تظهر في تاب المتصفح</li>
+                    <li><span class="option-letter">ج</span> شعار الموقع الكبير</li>
+                    <li><span class="option-letter">د</span> صورة تظهر في نتائج البحث</li>
+                </ul>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question">
+                <span class="question-number">سؤال 8</span>
+                <h4>ما هي Open Graph Tags؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> Meta Tags للـ SEO فقط</li>
+                    <li><span class="option-letter">ب</span> Meta Tags تتحكم في شكل الصفحة عند المشاركة على السوشيال ميديا</li>
+                    <li><span class="option-letter">ج</span> Tags لإضافة صور للموقع</li>
+                    <li><span class="option-letter">د</span> Tags لتحسين سرعة الموقع</li>
+                </ul>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question">
+                <span class="question-number">سؤال 9</span>
+                <h4>ليه autoplay مش بيشتغل في أغلب المتصفحات؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> لأن المتصفحات مش بتدعمه</li>
+                    <li><span class="option-letter">ب</span> لأنه محتاج يكون muted عشان ما يزعجش المستخدم</li>
+                    <li><span class="option-letter">ج</span> لأنه محتاج ملف صوتي معين</li>
+                    <li><span class="option-letter">د</span> لأنه ممنوع في HTML5</li>
+                </ul>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question">
+                <span class="question-number">سؤال 10</span>
+                <h4>ما هو الطول المثالي لـ meta description؟</h4>
+                <ul class="options">
+                    <li><span class="option-letter">أ</span> 10-20 حرف</li>
+                    <li><span class="option-letter">ب</span> 50-60 حرف</li>
+                    <li><span class="option-letter">ج</span> 150-160 حرف</li>
+                    <li><span class="option-letter">د</span> 300-400 حرف</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ========== Homework Section ========== -->
+        <section class="homework-section">
+            <div class="homework-header">
+                <div class="homework-header-icon">📝</div>
+                <div>
+                    <h2>واجبات المحاضرة</h2>
+                    <p>5 مسائل تطبيقية متدرجة لتثبيت ما تعلمته</p>
+                </div>
+            </div>
+
+            <!-- HW1 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الأول: صفحة Audio بسيطة</h4>
+                <p>ابني صفحة فيها:</p>
+                <ul>
+                    <li>Head كامل مع charset و viewport و title و description</li>
+                    <li>Favicon</li>
+                    <li>عنوان رئيسي "مكتبة الصوتيات"</li>
+                    <li>3 ملفات audio مختلفة مع controls</li>
+                    <li>كل audio تحت عنوان h3 باسم المقطع</li>
+                </ul>
+            </div>
+
+            <!-- HW2 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الثاني: صفحة Video</h4>
+                <p>ابني صفحة فيها:</p>
+                <ul>
+                    <li>Head كامل بكل Meta Tags</li>
+                    <li>Open Graph Tags</li>
+                    <li>فيديو محلي مع poster و controls</li>
+                    <li>فيديو YouTube مضمن بـ iframe</li>
+                    <li>figure + figcaption لكل فيديو</li>
+                </ul>
+            </div>
+
+            <!-- HW3 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الثالث: صفحة خريطة</h4>
+                <p>ابني صفحة "موقعنا" تحتوي على:</p>
+                <ul>
+                    <li>Head كامل</li>
+                    <li>عنوان "موقع الأكاديمية"</li>
+                    <li>iframe لخريطة Google Maps لمكان حقيقي</li>
+                    <li>فقرة بعنوان المكان وكيفية الوصول</li>
+                    <li>قائمة بأقرب معالم المكان</li>
+                    <li>رابط لفتح الخريطة في Google Maps</li>
+                </ul>
+            </div>
+
+            <!-- HW4 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الرابع: صفحة Podcast</h4>
+                <p>ابني صفحة بودكاست كاملة:</p>
+                <ul>
+                    <li>Header مع اسم البودكاست + nav</li>
+                    <li>Article لكل حلقة فيه:
+                        <ul>
+                            <li>عنوان الحلقة + time للنشر</li>
+                            <li>Audio player مع controls</li>
+                            <li>وصف الحلقة في فقرات</li>
+                            <li>رابط لتحميل الحلقة</li>
+                        </ul>
+                    </li>
+                    <li>3 حلقات على الأقل</li>
+                    <li>Aside فيه "حلقات مقترحة"</li>
+                    <li>Footer فيه معلومات التواصل</li>
+                </ul>
+            </div>
+
+            <!-- HW5 -->
+            <div class="homework-item">
+                <h4>📌 الواجب الخامس: التحدي — صفحة Media Gallery كاملة</h4>
+                <p>ابني صفحة معرض وسائط كاملة تجمع كل اللي اتعلمته:</p>
+                <ul>
+                    <li>Head كامل بكل Meta Tags + Open Graph + Favicon</li>
+                    <li>Semantic HTML (header, nav, main, section, article, aside, footer)</li>
+                    <li>Section للصوتيات — 2 audio players</li>
+                    <li>Section للفيديوهات — فيديو محلي + 2 YouTube iframes</li>
+                    <li>Section للخرائط — iframe لـ Google Maps</li>
+                    <li>Section للصور — figure + figcaption لـ 4 صور</li>
+                    <li>Aside فيه "الأكثر مشاهدة"</li>
+                    <li>Comments لتنظيم الكود</li>
+                    <li>نظم الملفات: index.html + images/ + audio/ + video/</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ========== Footer ========== -->
+    <footer>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-icon">S</div>
+                <span>Sunshine T Academy</span>
+            </div>
+            <p>Frontend Level 1 — HTML + CSS</p>
+            <p>بنحوّل الحلم لكود ☀️</p>
+            <p class="motto">HTML Media • Meta Tags • Page Setup</p>
+        </div>
+    </footer>
+
+</body>
+</html>
